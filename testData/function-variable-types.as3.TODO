@@ -1,0 +1,1 @@
+function functionName(param:Number, foobar:*, x){}
