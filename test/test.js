@@ -53,6 +53,10 @@ testNames.forEach(function (testName) {
 
     testScript(testName, function (err, warn) {
         if (err) {
+            if (err instanceof Error && err.stack) {
+                err = err.stack;
+            }
+
             console.error(String(err));
             failedTests.push(testName);
             return;
