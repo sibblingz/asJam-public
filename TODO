@@ -1,0 +1,34 @@
+DONE
+class => Class.create
+rewrite "as"
+rewrite "is"
+rewrite methods
+mangle protected names
+function typename stripping
+var typename stripping
+
+TODAY
+
+TOMORROW
+rewrite implicit pseudo-this. calls
+fn.bind
+rewrite properties
+rewrite into package
+ensure we can get to 'sp'
+check keyword collisions
+variable scoping (block or closure?)
+optional arguments
+splat arguments
+AS3 coersion rules with ==, !=
+rewrite properties
+rewrite getters and setters
+rewrite constructors
+mangle private names
+
+TWO DAYS FROM NOW
+super()
+class name resolution
+investigate debugging assistants (stacktrace rewriting, e.g.)
+inheritence
+interfaces
+method overrides
