@@ -18,7 +18,7 @@ function testScript(testName, callback) {
     var actual;
 
     try {
-        actual = printer.gen_code(parser.parse(source));
+        actual = printer.gen_code(printer.rewrite(parser.parse(source)));
     } catch (e) {
         callback(e || new Error('Unknown error'));
         return;
