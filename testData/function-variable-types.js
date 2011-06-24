@@ -1,1 +1,1 @@
-function functionName(param,foobar,x){}
+function functionName(param,foobar,x){}(function(){})();(function(){})()
