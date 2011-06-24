@@ -8,15 +8,12 @@ function typename stripping
 var typename stripping
 
 TODAY
-
-TOMORROW
-rewrite implicit pseudo-this. calls
+rewrite implicit pseudo-this. calls on methods
 fn.bind
 rewrite properties
 rewrite into package
 ensure we can get to 'sp'
 check keyword collisions
-variable scoping (block or closure?)
 optional arguments
 splat arguments
 AS3 coersion rules with ==, !=
@@ -24,11 +21,15 @@ rewrite properties
 rewrite getters and setters
 rewrite constructors
 mangle private names
+AS3 coersion with assignment
 
-TWO DAYS FROM NOW
+TOMORROW
 super()
 class name resolution
 investigate debugging assistants (stacktrace rewriting, e.g.)
 inheritence
 interfaces
 method overrides
+class visibility
+
+TWO DAYS FROM NOW
