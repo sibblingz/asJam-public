@@ -7,9 +7,9 @@ mangle protected names
 function typename stripping
 var typename stripping
 ensure we can get to 'sp'
+rewrite implicit pseudo-this. calls on methods
 
 TODAY
-rewrite implicit pseudo-this. calls on methods
 fn.bind
 rewrite properties
 rewrite into package
