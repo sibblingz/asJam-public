@@ -8,13 +8,13 @@ function typename stripping
 var typename stripping
 ensure we can get to 'sp'
 rewrite implicit pseudo-this. calls on methods
+optional arguments
 
 TODAY
 fn.bind
 rewrite properties
 rewrite into package
 check keyword collisions
-optional arguments
 splat arguments
 AS3 coersion rules with ==, !=
 rewrite properties
