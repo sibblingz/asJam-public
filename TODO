@@ -6,13 +6,13 @@ rewrite methods
 mangle protected names
 function typename stripping
 var typename stripping
+ensure we can get to 'sp'
 
 TODAY
 rewrite implicit pseudo-this. calls on methods
 fn.bind
 rewrite properties
 rewrite into package
-ensure we can get to 'sp'
 check keyword collisions
 optional arguments
 splat arguments
@@ -31,5 +31,7 @@ inheritence
 interfaces
 method overrides
 class visibility
+try-catch
+with blocks
 
 TWO DAYS FROM NOW
