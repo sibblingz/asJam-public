@@ -16,6 +16,8 @@ rewrite properties
 rewrite into package
 check keyword collisions
 splat arguments
+arguments instanceof Array
+arguments.callee
 AS3 coersion rules with ==, !=
 rewrite properties
 rewrite getters and setters
