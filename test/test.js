@@ -7,7 +7,6 @@ var printer = require('../lib/print');
 
 var testDataDir = path.join(__dirname, '..', 'testData');
 
-
 function testScript(testName, callback) {
     var sourceFilename = path.join(testDataDir, testName + '.as3');
     var expectedFilename = path.join(testDataDir, testName + '.js');
@@ -42,9 +41,21 @@ var skippedTests = [ ];
 var failedTests = [ ];
 var passedTests = [ ];
 
-testNames.forEach(function (testName) {
+function shouldSkip(testName) {
     if (/TODO/.test(testName)) {
-        console.warning('Skipping test ' + testName);
+        return true;
+    }
+
+    if (process.argv.length > 2) {
+        return process.argv.indexOf(testName) < 2;
+    }
+
+    return false;
+}
+
+testNames.forEach(function (testName) {
+    if (shouldSkip(testName)) {
+        console.log('Skipping test ' + testName);
         skippedTests.push(testName);
         return;
     }
