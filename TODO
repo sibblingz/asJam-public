@@ -11,21 +11,22 @@ rewrite implicit pseudo-this. calls on methods
 optional arguments
 
 TODAY
-fn.bind
-rewrite properties
-rewrite into package
-check keyword collisions
 splat arguments
 arguments instanceof Array
 arguments.callee
+rewrite constructors
+mangle private names
+
+TOMORROW
+fn.bind
+check keyword collisions
 AS3 coersion rules with ==, !=
 rewrite properties
 rewrite getters and setters
-rewrite constructors
-mangle private names
+rewrite into package
 AS3 coersion with assignment
 
-TOMORROW
+TWO DAYS FROM NOW
 super()
 class name resolution
 investigate debugging assistants (stacktrace rewriting, e.g.)
@@ -36,5 +37,3 @@ class visibility
 try-catch
 with blocks
 static methods
-
-TWO DAYS FROM NOW
