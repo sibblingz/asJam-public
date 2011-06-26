@@ -1,0 +1,1 @@
+function x(args){return arguments.slice(args)}
