@@ -4,6 +4,6 @@ class MyClass {
         }
 
         public var notSet:Object;
-        public var prop:int = 42;
+        public var prop:int = 42 + 9;
         public var mc:MovieClip = new MovieClip();
 }
