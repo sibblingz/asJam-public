@@ -16,13 +16,14 @@ rewrite constructors
 mangle private names
 
 TODAY
+rewrite simple properties
+rewrite getters and setters
+static methods
 
 TOMORROW
 fn.bind
 check keyword collisions
 AS3 coersion rules with ==, !=
-rewrite properties
-rewrite getters and setters
 rewrite into package
 AS3 coersion with assignment
 
@@ -36,4 +37,4 @@ method overrides
 class visibility
 try-catch
 with blocks
-static methods
+static properties
