@@ -1,1 +1,1 @@
-var MyClass=Class.create({methods:{publicFunction:function publicFunction(){},asJam_protected__protectedFunction:function asJam_protected__protectedFunction(){}}})
+var MyClass=Class.create({methods:{publicFunction:function publicFunction(){},protectedFunction:function protectedFunction(){},_privateFunction:function _privateFunction(){}}})

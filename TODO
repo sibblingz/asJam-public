@@ -13,9 +13,9 @@ splat arguments
 arguments instanceof Array
 arguments.callee
 rewrite constructors
+mangle private names
 
 TODAY
-mangle private names
 
 TOMORROW
 fn.bind
