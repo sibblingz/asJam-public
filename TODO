@@ -12,9 +12,9 @@ optional arguments
 splat arguments
 arguments instanceof Array
 arguments.callee
+rewrite constructors
 
 TODAY
-rewrite constructors
 mangle private names
 
 TOMORROW
