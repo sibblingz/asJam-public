@@ -11,9 +11,9 @@ rewrite implicit pseudo-this. calls on methods
 optional arguments
 splat arguments
 arguments instanceof Array
+arguments.callee
 
 TODAY
-arguments.callee
 rewrite constructors
 mangle private names
 

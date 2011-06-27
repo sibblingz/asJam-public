@@ -1,1 +1,1 @@
-function x(){var args=[].slice.call(arguments);return args.slice(2)}
+function x(){var args=sp.args(arguments);return args.slice(2)}
