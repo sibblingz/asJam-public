@@ -16,10 +16,10 @@ rewrite constructors
 mangle private names
 rewrite simple properties
 static methods
+rewrite getters and setters
 
 TODAY
 auto-insert .bind
-rewrite getters and setters
 
 TOMORROW
 fn.bind
