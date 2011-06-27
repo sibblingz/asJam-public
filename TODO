@@ -15,11 +15,11 @@ arguments.callee
 rewrite constructors
 mangle private names
 rewrite simple properties
+static methods
 
 TODAY
 auto-insert .bind
 rewrite getters and setters
-static methods
 
 TOMORROW
 fn.bind
