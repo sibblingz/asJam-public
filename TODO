@@ -17,6 +17,7 @@ mangle private names
 rewrite simple properties
 
 TODAY
+auto-insert .bind
 rewrite getters and setters
 static methods
 
