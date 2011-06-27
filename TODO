@@ -14,9 +14,9 @@ arguments instanceof Array
 arguments.callee
 rewrite constructors
 mangle private names
+rewrite simple properties
 
 TODAY
-rewrite simple properties
 rewrite getters and setters
 static methods
 
