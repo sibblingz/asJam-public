@@ -1,1 +1,1 @@
-function x(){return function(){var args=sp.args(arguments);return args}}
+function x(){return function(){arguments=sp.args(arguments);return arguments}}
