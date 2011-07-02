@@ -18,13 +18,8 @@ rewrite simple properties
 static methods
 rewrite getters and setters
 
-TODAY
-rewrite into package
-
 TOMORROW
-rewrite scoping code
-
-NEEDS SCOPE REWRITE
+rewrite into package
 auto-insert .bind
 inheritence
 class name resolution
