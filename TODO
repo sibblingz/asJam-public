@@ -16,14 +16,14 @@ rewrite constructors
 mangle private names
 rewrite simple properties
 static methods
-static properties
 rewrite getters and setters
 rewrite into package
 inheritence
 for-each-in loops
+try-catch
 
 TODAY
-try-catch
+static properties
 class name resolution
 
 TOMORROW
