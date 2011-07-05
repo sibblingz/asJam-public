@@ -1,0 +1,2 @@
+public class Foobar {
+}
