@@ -16,23 +16,26 @@ rewrite constructors
 mangle private names
 rewrite simple properties
 static methods
+static properties
 rewrite getters and setters
+rewrite into package
+inheritence
+
+TODAY
+for-each-in loops
+class name resolution
 
 TOMORROW
-rewrite into package
+class visibility handling
 auto-insert .bind
-inheritence
-class name resolution
 AS3 coersion with assignment
 check keyword collisions
 
 TWO DAYS FROM NOW
-class visibility
 fn.bind
 interfaces
 investigate debugging assistants (stacktrace rewriting, e.g.)
 method overrides
-static properties
 super()
 try-catch
 with blocks
