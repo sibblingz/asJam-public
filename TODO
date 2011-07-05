@@ -20,9 +20,10 @@ static properties
 rewrite getters and setters
 rewrite into package
 inheritence
+for-each-in loops
 
 TODAY
-for-each-in loops
+try-catch
 class name resolution
 
 TOMORROW
@@ -37,5 +38,4 @@ interfaces
 investigate debugging assistants (stacktrace rewriting, e.g.)
 method overrides
 super()
-try-catch
 with blocks
