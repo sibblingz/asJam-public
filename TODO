@@ -21,9 +21,9 @@ rewrite into package
 inheritence
 for-each-in loops
 try-catch
+static properties
 
 TODAY
-static properties
 class name resolution
 
 TOMORROW
