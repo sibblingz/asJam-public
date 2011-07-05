@@ -1,0 +1,10 @@
+// This test is incomplete. It should add each import as an
+// argument to the define callback. Of course, it doesn't do
+// that now.
+package {
+        import flash.display.MovieClip;
+        import flash.events.Event;
+
+        class MyClass {
+        }
+}
