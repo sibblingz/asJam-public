@@ -24,9 +24,11 @@ try-catch
 static properties
 
 TODAY
-class name resolution
+static name references
+inheritence name resolution
 
 TOMORROW
+class name resolution
 class visibility handling
 auto-insert .bind
 AS3 coersion with assignment
