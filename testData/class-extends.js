@@ -1,1 +1,1 @@
-var Foobar=Class.create(EventDispatcher,{constructor:function Foobar(){}})
+var Foobar=sp.Class.create("Foobar",EventDispatcher,{constructor:function Foobar(){}})

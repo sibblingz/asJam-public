@@ -1,1 +1,1 @@
-var Foobar=Class.create({constructor:function Foobar(){}})
+var Foobar=sp.Class.create("Foobar",{constructor:function Foobar(){}})
