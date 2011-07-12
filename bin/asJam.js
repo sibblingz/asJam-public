@@ -118,7 +118,13 @@ if (destDir) {
         var namespace = sp[0];
         var name = sp[1];
 
-        nameTable.add(namespace, new printer.Name(name));
+        name = new printer.ExportName(name);
+        name.get_ast = function() {
+            return [ "dot", [ "name", "sp" ], this ];
+        };
+        name.needs_import = false;
+
+        nameTable.add(namespace, name);
     });
 
     var outputs = convert.project(sourceDir, nameTable);
