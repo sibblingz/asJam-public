@@ -5,13 +5,13 @@ var fs = require('fs');
 var convert = require('../lib/convert');
 
 var rootPath = path.join(__dirname, '..', 'testData', 'proj');
-var files = convert.project(rootPath);
+var outputs = convert.project(rootPath);
 
-Object.keys(files).forEach(function (outputPath) {
+Object.keys(outputs).forEach(function (outputPath) {
     var expectedFilename = path.join(rootPath, outputPath);
 
     var expected = fs.readFileSync(expectedFilename, 'utf8');
-    var actual = files[outputPath];
+    var actual = printer.gen_code(outputs[outputPath]);
 
     if (actual.trim() !== expected.trim()) {
         assert.ok(false, 'Test for ' + outputPath + ' failed; got:\n' + actual + '\nbut expected:\n' + expected + '\n');
