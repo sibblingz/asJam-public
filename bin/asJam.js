@@ -10,6 +10,19 @@ var NameTable = require('../lib/namespace').NameTable;
 var sourceDir = process.argv[2];
 var destDir = process.argv[3];
 
+function mkdirPSync(p, mode) {
+    p = path.normalize(p);
+    var pathParts = p.split('/');
+
+    for (var i = 0; i < pathParts.length; ++i) {
+        var dirPath = path.join.apply(path, pathParts.slice(0, i + 1));
+
+        if (!path.existsSync(dirPath)) {
+            fs.mkdirSync(dirPath, mode || 0755);
+        }
+    }
+}
+
 if (destDir) {
     // Project
     var nameTable = new NameTable();
@@ -112,7 +125,9 @@ if (destDir) {
 
     Object.keys(outputs).forEach(function (outputPath) {
         var ast = outputs[outputPath];
+        console.log('Dumping to %s', outputPath);
         var code = printer.gen_code(ast, { beautify: true });
+        mkdirPSync(path.dirname(path.join(destDir, outputPath)));
 
         fs.writeFile(path.join(destDir, outputPath), code, 'utf8', function (err) {
             if (err) throw err;
