@@ -126,14 +126,15 @@ if (destDir) {
     Object.keys(outputs).forEach(function (outputPath) {
         var ast = outputs[outputPath];
         console.log('Dumping to %s', outputPath);
+
         var code = printer.gen_code(ast, { beautify: true });
         mkdirPSync(path.dirname(path.join(destDir, outputPath)));
 
-        fs.writeFile(path.join(destDir, outputPath), code, 'utf8', function (err) {
-            if (err) throw err;
-
-            console.log('Wrote %s', outputPath);
-        });
+        // writeFile (async) doesn't work too well because we end up
+        // with lots of open files, which may make the operating
+        // system (OSX) bitchy.
+        fs.writeFileSync(path.join(destDir, outputPath), code, 'utf8');
+        console.log('Wrote %s', outputPath);
     });
 } else {
     // One file
