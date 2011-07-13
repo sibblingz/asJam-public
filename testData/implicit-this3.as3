@@ -1,0 +1,16 @@
+class Foobar {
+    public function one() {
+        two(three);
+
+        var boundThree = three;
+        two(boundThree);
+    }
+
+    public function two(fn) {
+        fn();
+    }
+
+    public function three() {
+        assert(this instanceof Foobar);
+    }
+}
