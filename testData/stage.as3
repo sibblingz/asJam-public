@@ -1,0 +1,7 @@
+stage.addChild(new Player());
+stage.stageWidth = 42;
+
+function foo() {
+    var stage = 42;
+    return stage + 5;
+}
