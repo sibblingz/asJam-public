@@ -25,15 +25,15 @@ static properties
 static name references
 class name resolution
 method overrides
+rewrite imported name references
+auto-insert .bind
 
 TODAY
 inheritence name resolution
 implicit globals from flash.utils (e.g. flash.utils.setTimeout => setTimeout)
-rewrite imported name references
 
 TOMORROW
 class visibility handling
-auto-insert .bind
 AS3 coersion with assignment
 check keyword collisions
 
