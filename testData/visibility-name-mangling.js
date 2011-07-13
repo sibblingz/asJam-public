@@ -1,1 +1,1 @@
-var MyClass=sp.Class.create("MyClass",{methods:{publicFunction:function publicFunction(){},protectedFunction:function protectedFunction(){},_privateFunction:function _privateFunction(){}}})
+var MyClass=sp.Class.create("MyClass",{methods:{publicFunction:function publicFunction(){},protectedFunction:function protectedFunction(){},privateFunction:function privateFunction(){},x:function x(){this.publicFunction();this.protectedFunction();this.privateFunction()}}})
