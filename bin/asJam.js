@@ -136,7 +136,6 @@ function getNameTable(defs) {
             var memberNames = def.members.map(function (member) {
                 var memberName = new printer.Name(member.name);
                 memberName.type = member.type;
-                console.log(className, memberName);
                 return memberName;
             });
 
