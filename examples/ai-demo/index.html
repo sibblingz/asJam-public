@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="client/swfobject.js"></script>
+    <script type="text/javascript" src="client/nodecompat.js"></script>
+    <script type="text/javascript" src="client/proxyclass.js"></script>
+    <script type="text/javascript" src="client/require.js"></script>
+    <script type="text/javascript" src="Main.js"></script>
+
+    <script type="text/javascript">
+      function main(stage) {
+        var loader = new sp.Loader();
+        loader.contentLoaderInfo.addEventListener(sp.Event.COMPLETE, function(event) {
+          Main = require('Main');
+
+          var d = loader.contentLoaderInfo.applicationDomain.definitions;
+          Player = d.Player;
+          Marker = d.Marker;
+
+          var game = new Main();
+          stage.addChild(game);
+
+          event.target.removeEventListener(event.type, arguments.callee);
+        });
+        loader.load(new sp.URLRequest('/main.swf'));
+      }
+    </script>
+  </head>
+  <body>
+    <div id="flashContent" style="z-index:1;position:absolute;width:760px;height:600px;"></div>
+  </body>
+</html>

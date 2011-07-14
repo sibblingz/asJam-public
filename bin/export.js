@@ -1,4 +1,6 @@
-var sp = require(process.argv[2]);
+var path = require('path');
+var spFilename = path.resolve(process.argv[2]);
+var sp = require(spFilename);
 
 var output = { };
 
