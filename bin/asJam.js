@@ -1,14 +1,16 @@
 var fs = require('fs');
 var path = require('path');
 
+var argv = require('optimist').argv;
+
 var parser = require('../lib/parse');
 var printer = require('../lib/print');
 var convert = require('../lib/convert');
 
 var NameTable = require('../lib/namespace').NameTable;
 
-var sourceDir = process.argv[2];
-var destDir = process.argv[3];
+var sourceDir = argv._[0];
+var destDir = argv._[1];
 
 function mkdirPSync(p, mode) {
     p = path.normalize(p);
@@ -23,9 +25,9 @@ function mkdirPSync(p, mode) {
     }
 }
 
-if (destDir) {
-    // Project
-    var nameTable = new NameTable();
+function getNameTable(defs) {
+    defs = defs || { };
+
     var sp = [
         [ "flash.display", "Bitmap" ],
         [ "flash.display", "BitmapData" ],
@@ -114,19 +116,48 @@ if (destDir) {
         [ "flash.utils", "setInterval" ],
     ];
 
+    var nameTable = new NameTable();
+
     sp.forEach(function (sp) {
         var namespace = sp[0];
-        var name = sp[1];
+        var className = sp[1];
 
-        name = new printer.ExportName(name);
+        name = new printer.ExportName(className);
         name.get_ast = function() {
             return [ "dot", [ "name", "sp" ], this ];
         };
         name.needs_import = false;
 
+        if (Object.prototype.hasOwnProperty.call(defs, className)) {
+            var def = defs[className];
+            var classScope = new printer.ClassScope(className, def.superClass, null);
+            name.class_scope = classScope;
+
+            var memberNames = def.members.map(function (member) {
+                var memberName = new printer.Name(member.name);
+                memberName.type = member.type;
+                console.log(className, memberName);
+                return memberName;
+            });
+
+            memberNames.forEach(classScope.define, classScope);
+        }
+
         nameTable.add(namespace, name);
     });
 
+    return nameTable;
+}
+
+var defs = null;
+
+if (argv.defs) {
+    defs = JSON.parse(fs.readFileSync(argv.defs, 'utf8'));
+}
+
+if (destDir) {
+    // Project
+    var nameTable = getNameTable(defs);
     var outputs = convert.project(sourceDir, nameTable);
 
     Object.keys(outputs).forEach(function (outputPath) {
