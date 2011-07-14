@@ -27,9 +27,9 @@ class name resolution
 method overrides
 rewrite imported name references
 auto-insert .bind
+inheritence name resolution
 
 TODAY
-inheritence name resolution
 implicit globals from flash.utils (e.g. flash.utils.setTimeout => setTimeout)
 
 TOMORROW
