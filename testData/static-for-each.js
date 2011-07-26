@@ -1,0 +1,1 @@
+var Foobar=sp.Class.create("Foobar",{methods:{foo:function foo(){for(var key in Foobar.myStatic){if(!{}.hasOwnProperty.call(Foobar.myStatic,key))continue;var x=Foobar.myStatic[key];return x}}},statics:{myStatic:[1,2,3]}})
