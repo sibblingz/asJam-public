@@ -9,6 +9,8 @@
 
     var NameTable = require('../lib/namespace').NameTable;
 
+    var codes = { };
+
     function load(sourceDir, vmContext) {
         var nameTable = new NameTable();
         var outputs = convert.project(sourceDir, nameTable);
@@ -17,6 +19,8 @@
         Object.keys(outputs).forEach(function (outputPath) {
             var ast = outputs[outputPath];
             var code = printer.gen_code(ast, { beautify: true });
+
+            codes[outputPath] = code;
             scripts[outputPath] = vm.createScript(code, outputPath);
         });
 
@@ -37,7 +41,16 @@
 
     function run(vmContext) {
         vmContext.require([ 'Main' ], function (Main) {
-            Main.run();
+            try {
+                Main.run();
+            } catch (e) {
+                Object.keys(codes).forEach(function (key) {
+                    console.log('===== ' + key);
+                    console.log(codes[key]);
+                });
+
+                throw e;
+            }
         });
     }
 

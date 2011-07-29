@@ -4,7 +4,8 @@ package {
 		}
 		
 		public static var testSuiteClasses = [
-			MathTests
+			MathTests,
+			DefaultArguments
 		];
 		
 		public static function run():void {
