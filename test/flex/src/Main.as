@@ -1,11 +1,14 @@
 package {
+	import superTests.SuperTests;
+
 	public class Main {
 		public function Main() {
 		}
 		
 		public static var testSuiteClasses = [
 			MathTests,
-			DefaultArguments
+			DefaultArguments,
+			SuperTests
 		];
 		
 		public static function run():void {
