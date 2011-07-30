@@ -1,5 +1,7 @@
 package {
 	import superTests.SuperTests;
+	
+	import tests.ImplicitThis;
 
 	public class Main {
 		public function Main() {
@@ -8,7 +10,8 @@ package {
 		public static var testSuiteClasses = [
 			MathTests,
 			DefaultArguments,
-			SuperTests
+			SuperTests,
+			ImplicitThis
 		];
 		
 		public static function run():void {

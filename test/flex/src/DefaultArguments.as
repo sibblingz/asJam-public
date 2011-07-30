@@ -34,7 +34,7 @@ package {
 
 		public static function testZeroOne():void {
 			var expected:Array = [ 'one' ];
-			Assert.arrayEqual(one(), [ 'one' ]);
+			Assert.arrayEqual(one(), expected);
 		}
 
 		public static function testZeroTwo():void {
