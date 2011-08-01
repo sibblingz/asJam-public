@@ -11,12 +11,12 @@ package {
 		];
 		
 		public static function sum():void {
-			Assert.equal( 2 +  2,  4, ' 2 +  2 =  4');
-			Assert.equal(-2 +  2,  0, '-2 +  2 =  0');
-			Assert.equal( 2 + -2,  0, ' 2 + -2 =  0');
-			Assert.equal(-2 + -2, -4, '-2 + -2 = -4');
-			Assert.equal( 5 +  2,  7, ' 5 +  2 =  7');
-			Assert.equal( 2 +  5,  7, ' 2 +  5 =  7');
+			Assert.equal( 4, 2 +  2,  ' 2 +  2 =  4');
+			Assert.equal( 0,-2 +  2,   '-2 +  2 =  0');
+			Assert.equal( 0, 2 + -2,   ' 2 + -2 =  0');
+			Assert.equal(-4,-2 + -2, '-2 + -2 = -4');
+			Assert.equal( 7, 5 +  2, ' 5 +  2 =  7');
+			Assert.equal( 7, 2 +  5,  ' 2 +  5 =  7');
 		}
 		
 		public static function manySum():void {
