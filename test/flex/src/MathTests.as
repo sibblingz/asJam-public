@@ -141,6 +141,49 @@ package {
 
 		}
 		
+		public static function varOps():void {
+			
+			var b23: int;
+			b23= 12;
+			Assert.equal( 12, b23,  'b23 =  12');
+			
+			Assert.equal( 12,b23++,   'b23++ =  12');
+			Assert.equal( 12,b23--,   'b23-- =  13');
+			
+			Assert.equal( 12,++b23,   '++b23 =  13');
+			Assert.equal( 12,--b23,   '--b23 =  12');
 
+			b23+= 12;
+			Assert.equal( 24,b23,   'b23 +=12  24');
+			b23-= 12;
+			Assert.equal( 12,b23,   'b23 -=12 =  12');
+			
+			b23*= 12;
+			Assert.equal( 144,b23,   'b23 *=12 =  144');
+			
+			b23/= 12;
+
+			Assert.equal( 12,b23,   'b23 /=12 =  12');
+			
+			b23%= 11;
+			Assert.equal( 1,b23,   'b23 %=11 =  1');
+			
+			b23=7;
+			var b24: int = 9;
+			Assert.equal( 1,b23&b24,   'b23&b24 =  1');
+
+			
+			Assert.equal( 1,b23&15&b24,   'b23&b24 =  1');
+
+			Assert.equal( 1,b23&15&b24,   'b23&b24 =  1');
+
+			Assert.equal( 15,b23|b24,   'b23|b24 =  15');
+			
+			Assert.equal( 11,8|3|1,   '8|3|1 =  1');
+
+
+		}
+		
+		
 	}
 }
