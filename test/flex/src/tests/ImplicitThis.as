@@ -10,22 +10,21 @@ package tests
 		}
 		
 		public static var testNames:Array = [
-			'methodology',
-			'changelocalvar'//,
+			'method',
+			'changeLocalVar'//,
 			//'difference',
 			//'manyDifference'
 		];
 		
-		public static function methodology(){
+		public static function method(){
 			var bob = new ImplicitThis();
 			bob.fred();
 		}
 		
-		public static function changelocalvar(){
+		public static function changeLocalVar(){
 			var bar = new ImplicitThis();
 			bar.changeValue();
-			
-			
+				
 		}
 		
 		public function fred(){
@@ -49,7 +48,7 @@ package tests
 		public function addVal(value:int):void{
 			i = i + value;
 		}
-			
+		
 		public function billybob(){
 			return true;
 		}
