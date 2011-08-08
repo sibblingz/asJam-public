@@ -29,22 +29,22 @@ package {
 
 		public static function testZeroZero():void {
 			var expected:Array = [ ];
-			Assert.arrayEqual(zero(), expected);
+			Assert.arrayEqual( expected,zero());
 		}
 
 		public static function testZeroOne():void {
 			var expected:Array = [ 'one' ];
-			Assert.arrayEqual(one(), expected);
+			Assert.arrayEqual( expected, one());
 		}
 
 		public static function testZeroTwo():void {
 			var expected:Array = [ 'one', 2 ];
-			Assert.arrayEqual(two(), expected);
+			Assert.arrayEqual( expected, two());
 		}
 
 		public static function testZeroThree():void {
 			var expected:Array = [ 'one', 2, undefined ];
-			Assert.arrayEqual(three(), expected);
+			Assert.arrayEqual(expected, three() );
 		}
 
 		private static function zero():Array {

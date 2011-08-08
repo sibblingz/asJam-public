@@ -4,29 +4,29 @@ package {
 			throw new Error('Assert is a static class');
 		}
 		
-		public static function expectedMessage(actual:*, expected:*):String {
+		public static function expectedMessage( expected:*,actual:*):String {
 			return 'expected: ' + expected + ' but got: ' + actual;
 		}
 
-		public static function equal(actual:*, expected:*, message:String = null):void {
-			ok(expected == actual, message || ('Equal: ' + expectedMessage(actual, expected)));
+		public static function equal(expected:*, actual:*, message:String = null):void {
+			ok(expected == actual, message || ('Equal: ' + expectedMessage(expected, actual)));
 		}
 		
-		public static function same(actual:*, expected:*, message:String = null):void {
-			ok(expected === actual, message || ('Same: ' + expectedMessage(actual, expected)));
+		public static function same(expected:*, actual:*, message:String = null):void {
+			ok(expected === actual, message || ('Same: ' + expectedMessage(expected,actual)));
 		}
 
-		public static function arrayEqual(actual:Array, expected:Array, message:String = null):void {
-			ok(!!actual, expectedMessage(actual, expected));
+		public static function arrayEqual( expected:Array,actual:Array, message:String = null):void {
+			ok(!!actual, expectedMessage(expected, actual));
 
 			if(actual.length !== expected.length)
 				ok(false, expectedMessage('Array of length ' + actual.length, 'Array of length ' + expected.length));
 
 			for(var i:Number = 0; i < expected.length; ++i) {
 				equal(
-					actual[i],
 					expected[i],
-					(message || expectedMessage(actual[i], expected[i])) + ' (index ' + i + ')'
+					actual[i],
+					(message || expectedMessage( expected[i], actual[i])) + ' (index ' + i + ')'
 				);
 			}
 		}
