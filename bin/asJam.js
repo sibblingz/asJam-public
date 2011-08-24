@@ -13,16 +13,24 @@ var sourceDir = argv._[0];
 var destDir = argv._[1];
 
 function mkdirPSync(p, mode) {
+    var paths = [ ];
+    var oldP;
+
     p = path.normalize(p);
-    var pathParts = p.split('/');
 
-    for (var i = 0; i < pathParts.length; ++i) {
-        var dirPath = path.join.apply(path, pathParts.slice(0, i + 1));
+    // Walk up the path.  We keep oldP around because the "root" may be /, an
+    // empty string, or God-knows-what.
+    do {
+        oldP = p;
+        paths.unshift(p);
+        p = path.dirname(p);
+    } while (p !== oldP);
 
+    paths.forEach(function (dirPath) {
         if (!path.existsSync(dirPath)) {
             fs.mkdirSync(dirPath, mode || 0755);
         }
-    }
+    });
 }
 
 function getNameTable(defs) {
