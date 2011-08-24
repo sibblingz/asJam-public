@@ -9,11 +9,11 @@ package {
 		}
 
 		public static function equal(expected:*, actual:*, message:String = null):void {
-			ok(expected == actual, message || ('Equal: ' + expectedMessage(expected, actual)));
+			ok(expected == actual, message + " " + ('Equal: ' + expectedMessage(expected, actual)));
 		}
 		
 		public static function same(expected:*, actual:*, message:String = null):void {
-			ok(expected === actual, message || ('Same: ' + expectedMessage(expected,actual)));
+			ok(expected === actual, message + " " + ('Same: ' + expectedMessage(expected,actual)));
 		}
 
 		public static function arrayEqual( expected:Array,actual:Array, message:String = null):void {
@@ -26,7 +26,7 @@ package {
 				equal(
 					expected[i],
 					actual[i],
-					(message || expectedMessage( expected[i], actual[i])) + ' (index ' + i + ')'
+					(message + " " + expectedMessage( expected[i], actual[i])) + ' (index ' + i + ')'
 				);
 			}
 		}
