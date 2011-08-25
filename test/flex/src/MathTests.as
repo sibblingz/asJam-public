@@ -447,6 +447,14 @@ package {
 				*///classy
 				'1 is 1'); //wow no way?
 			
+			
+			Assert.equal( 1,
+				//wtf?
+				/*this is crazy this works wow?
+				*///classy
+				1,
+				//"wierd this is cool
+				'1 is 1'); //wow no way?
 		}
 		
 		public static function manyComparison():void {

@@ -2,6 +2,8 @@ package {
 	import superTests.SuperTests;
 	
 	import tests.ImplicitThis;
+	import interfaceTests.InterfaceTester;
+		
 
 	public class Main {
 		public function Main() {
@@ -11,7 +13,8 @@ package {
 			MathTests,
 			DefaultArguments,
 			SuperTests,
-			ImplicitThis//,
+			ImplicitThis,
+			InterfaceTester
 			
 		];
 		
