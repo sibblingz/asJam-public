@@ -1,6 +1,6 @@
 package DifferentPackage
 {
-	var variable = "a variable";
+	//var variable = "a variable";
 
 	
 	public class NewTests
