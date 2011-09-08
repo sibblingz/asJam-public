@@ -3,7 +3,7 @@ package interfaceTests
 	import interfaceTests.MovieClip;
 
 	
-	public class InterfaceTest extends interfaceTests.MovieClip implements IMonster{
+	public class InterfaceTest extends MovieClip implements IMonster{
 		var health=100;
 		public function InterfaceTest()
 		{

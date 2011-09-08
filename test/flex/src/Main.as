@@ -2,7 +2,7 @@ package {
 	import superTests.SuperTests;
 	
 	import tests.ImplicitThis;
-	//import interfaceTests.InterfaceTester;
+	import interfaceTests.InterfaceTester;
 	import defaultParameters.DefaultParamTests;
 		
 
@@ -15,8 +15,8 @@ package {
 			DefaultArguments,
 			SuperTests,
 			ImplicitThis,
-			DefaultParamTests
-			//InterfaceTester
+			DefaultParamTests,
+			InterfaceTester
 			
 		];
 		
