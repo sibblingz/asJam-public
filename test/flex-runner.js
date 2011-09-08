@@ -62,7 +62,7 @@
         'require.js'
     );
 
-    vmContext.sp = require('../../spaceport/client/proxyclass.js');
+    vmContext.sp = require('../../spaceport/client/spaceport.js');
 
     load(path.join(__dirname, 'flex', 'src'), vmContext);
     run(vmContext);
