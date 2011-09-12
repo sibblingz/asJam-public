@@ -5,6 +5,10 @@ var sp = require(spFilename);
 var output = { };
 
 for (var klassName in sp) {
+    if (!sp[klassName]) {
+        continue;
+    }
+
     var klass = {
         name: klassName,
         members: [ ]
