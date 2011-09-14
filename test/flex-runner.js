@@ -1,4 +1,48 @@
 (function (require) {
+    // Node.JS is retarded and doesn't flush output streams when porcess.exit
+    // is called.  We thus need to manually wait for the flushes to occur, then
+    // exit.
+    function waitStream(stream, callback) {
+        if (stream.writable) {
+            stream.on('close', function () {
+                callback(null);
+            });
+
+            stream.on('error', function (err) {
+                callback(err);
+            });
+        } else {
+            // Already closed
+            process.nextTick(function () {
+                callback(null);
+            });
+        }
+    }
+
+    process.on('uncaughtException', function (e) {
+        function log(e) {
+            console.log(e && (e.stack || e.toString() || e));
+        }
+
+        log(e);
+
+        var doneCount = 0;
+
+        function check() {
+            if (doneCount === 2) {
+            }
+        }
+
+        function done(err) {
+            if (err) log(err);
+            ++doneCount;
+            check();
+        }
+
+        waitStream(process.stdout, done);
+        waitStream(process.stderr, done);
+    });
+
     var fs = require('fs');
     var vm = require('vm');
     var path = require('path');
