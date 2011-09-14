@@ -1,7 +1,19 @@
 var fs = require('fs');
 var path = require('path');
 
-var argv = require('optimist').argv;
+var optimist = require('optimist')
+    .wrap(80)
+    .describe({
+        'defs':               'Use the given JSON Spaceport definition file',
+        'ignore-dot-files':   'Ignore dot files'
+    })
+    .string([ 'defs' ])
+    .boolean([ 'ignore-dot-files' ])
+    .default({
+        'ignore-dot-files': false
+    });
+
+var argv = optimist.argv;
 
 var parser = require('../lib/parse');
 var printer = require('../lib/print');
@@ -165,11 +177,25 @@ if (argv.defs) {
 if (destDir) {
     // Project
     var nameTable = getNameTable(defs);
-    var outputs = convert.project(sourceDir, nameTable);
+    var outputs = convert.project(sourceDir, nameTable, {
+        read: function (filename) {
+            //console.log('Reading', filename);
+        },
+        parse: function (filename) {
+            //console.log('Parsing', filename);
+        },
+        build_exports: function (filename) {
+            //console.log('Building exports from', filename);
+        },
+        rewrite: function (filename) {
+            //console.log('Rewriting', filename);
+        },
+        ignore_dot_files: argv['ignore-dot-files']
+    });
 
     Object.keys(outputs).forEach(function (outputPath) {
         var ast = outputs[outputPath];
-        console.log('Dumping to %s', outputPath);
+        //console.log('Dumping to %s', outputPath);
 
         var code = printer.gen_code(ast, { beautify: true });
         mkdirPSync(path.dirname(path.join(destDir, outputPath)));
@@ -178,7 +204,7 @@ if (destDir) {
         // with lots of open files, which may make the operating
         // system (OSX) bitchy.
         fs.writeFileSync(path.join(destDir, outputPath), code, 'utf8');
-        console.log('Wrote %s', outputPath);
+        //console.log('Wrote %s', outputPath);
     });
 } else {
     // One file
