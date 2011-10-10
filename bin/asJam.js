@@ -176,35 +176,49 @@ if (argv.defs) {
 
 if (destDir) {
     // Project
+    var lastStep = 'initializing';
+
     var nameTable = getNameTable(defs);
-    var outputs = convert.project(sourceDir, nameTable, {
+    var options = {
         read: function (filename) {
-            //console.log('Reading', filename);
+            lastStep = 'reading ' + filename;
         },
         parse: function (filename) {
-            //console.log('Parsing', filename);
+            lastStep = 'parsing ' + filename;
         },
         build_exports: function (filename) {
-            //console.log('Building exports from', filename);
+            lastStep = 'building exports from ' + filename;
         },
         rewrite: function (filename) {
-            //console.log('Rewriting', filename);
+            lastStep = 'converting ' + filename;
         },
         ignore_dot_files: argv['ignore-dot-files']
-    });
+    };
+    var outputs;
+    try {
+        outputs = convert.project(sourceDir, nameTable, options);
+    } catch (e) {
+        console.error('Error converting project while ' + lastStep + ':');
+        console.error(e.toString());
+        process.exit(1);
+    }
 
     Object.keys(outputs).forEach(function (outputPath) {
         var ast = outputs[outputPath];
-        //console.log('Dumping to %s', outputPath);
 
-        var code = printer.gen_code(ast, { beautify: true });
-        mkdirPSync(path.dirname(path.join(destDir, outputPath)));
+        try {
+            var code = printer.gen_code(ast, { beautify: true });
+            mkdirPSync(path.dirname(path.join(destDir, outputPath)));
 
-        // writeFile (async) doesn't work too well because we end up
-        // with lots of open files, which may make the operating
-        // system (OSX) bitchy.
-        fs.writeFileSync(path.join(destDir, outputPath), code, 'utf8');
-        //console.log('Wrote %s', outputPath);
+            // writeFile (async) doesn't work too well because we end up
+            // with lots of open file handles, which may make the operating
+            // system (OS X) bitchy.
+            fs.writeFileSync(path.join(destDir, outputPath), code, 'utf8');
+        } catch (e) {
+            console.error('Error while saving ' + outputPath + ':');
+            console.error(e.toString());
+            process.exit(1);
+        }
     });
 } else {
     // One file
