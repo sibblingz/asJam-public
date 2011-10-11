@@ -98,7 +98,14 @@
         });
     }
 
-    var vmContext = { };
+    var vmContext = {
+        Array: Array,
+        Date: Date,
+        Number: Number,
+        Object: Object,
+        RegExp: RegExp,
+        String: String,
+    };
 
     vm.runInNewContext(
         fs.readFileSync(path.join(__dirname, 'require.js')),
