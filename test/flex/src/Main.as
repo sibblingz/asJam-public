@@ -13,7 +13,7 @@ package {
 		public static var testSuiteClasses = [
 			MathTests,
 			DefaultArguments,
-			SuperTests,
+			//SuperTests,
 			ImplicitThis,
 			DefaultParamTests,
 			InterfaceTester
