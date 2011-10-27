@@ -53,6 +53,11 @@
 
     var NameTable = require('../lib/namespace').NameTable;
 
+    var SPACEPORT_PATH = path.join(__dirname, '..', '..', 'spaceport', 'client', 'spaceport.js');
+    if (process.argv.length === 3) {
+        SPACEPORT_PATH = process.argv[2];
+    }
+
     var codes = { };
 
     function load(sourceDir, vmContext) {
@@ -113,7 +118,7 @@
         'require.js'
     );
 
-    vmContext.sp = require('../../spaceport/client/spaceport.js');
+    vmContext.sp = require(SPACEPORT_PATH);
 
     load(path.join(__dirname, 'flex', 'src'), vmContext);
     run(vmContext);
