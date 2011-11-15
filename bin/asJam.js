@@ -203,6 +203,11 @@ if (destDir) {
         process.exit(1);
     }
 
+    if (Object.keys(outputs).length === 0) {
+        console.error('Could not find any .as files to convert');
+        process.exit(2);
+    }
+
     Object.keys(outputs).forEach(function (outputPath) {
         var ast = outputs[outputPath];
 
