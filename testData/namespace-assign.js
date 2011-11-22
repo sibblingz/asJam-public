@@ -1,1 +1,1 @@
-define("___",[],function(){var ___=sp.Class.create("___",{});return ___})
+define([],function(){var ___=sp.Class.create("___",{});return ___})
