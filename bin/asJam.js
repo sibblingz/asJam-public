@@ -3,6 +3,7 @@ var path = require('path');
 
 var optimist = require('optimist')
     .wrap(80)
+    .usage('Usage: $0 [options] input-dir-or-file [output-dir]')
     .describe({
         'defs':               'Use the given JSON Spaceport definition file',
         'ignore-dot-files':   'Ignore dot files'
@@ -14,6 +15,11 @@ var optimist = require('optimist')
     });
 
 var argv = optimist.argv;
+
+if (argv._.length !== 1 && argv._.length !== 2) {
+    optimist.showHelp();
+    process.exit(3);
+}
 
 var parser = require('../lib/parse');
 var printer = require('../lib/print');
