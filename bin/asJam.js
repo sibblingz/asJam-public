@@ -192,8 +192,14 @@ if (destDir) {
         parse: function (filename) {
             lastStep = 'parsing ' + filename;
         },
+        parse_error: function (err, filename) {
+            console.error('Error converting project while parsing ' + filename + ':');
+            console.error(err.toString());
+        },
         build_exports: function (filename) {
-            lastStep = 'building exports from ' + filename;
+            lastStep = filename
+                ? 'building exports from ' + filename
+                : 'building exports';
         },
         rewrite: function (filename) {
             lastStep = 'converting ' + filename;
