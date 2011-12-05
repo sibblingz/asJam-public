@@ -5,3 +5,7 @@ Binary dependencies:
 To install:
 
     npm install
+
+To test:
+
+    make test
