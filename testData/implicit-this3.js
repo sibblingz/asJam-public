@@ -1,1 +1,1 @@
-var Foobar=sp.Class.create("Foobar",{methods:{one:function one(){var self=this;self.two(self.three.bind(self));var boundThree=self.three.bind(self);self.two(boundThree)},two:function two(fn){fn()},three:function three(){assert(this instanceof Foobar)}}})
+var Foobar=sp.Class.create("Foobar",{methods:{one:function one(){var self=this;self.two(self.three);var boundThree=self.three;self.two(boundThree)},two:function two(fn){fn()}},prebound:{three:function three(){assert(this instanceof Foobar)}}})
