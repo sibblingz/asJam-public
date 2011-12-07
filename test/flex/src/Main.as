@@ -1,9 +1,9 @@
 package {
 	import superTests.SuperTests;
-	
 	import tests.ImplicitThis;
 	import interfaceTests.InterfaceTester;
 	import defaultParameters.DefaultParamTests;
+	import fqn.SelfReferences;
 
 	public class Main {
 		public function Main() {
@@ -15,8 +15,8 @@ package {
 			//SuperTests,
 			ImplicitThis,
 			DefaultParamTests,
-			InterfaceTester
-			
+			InterfaceTester,
+			SelfReferences
 		];
 		
 		public static function run():void {
