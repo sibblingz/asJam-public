@@ -4,7 +4,6 @@ package {
 	import tests.ImplicitThis;
 	import interfaceTests.InterfaceTester;
 	import defaultParameters.DefaultParamTests;
-		
 
 	public class Main {
 		public function Main() {
