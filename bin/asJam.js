@@ -53,19 +53,36 @@ function mkdirPSync(p, mode) {
 }
 
 function getNameTable(metadata) {
-    metadata = metadata || { };
-
     var nameTable = new NameTable();
-    Object.keys(metadata.sp).forEach(function (className) {
-        var classDef = metadata.sp[className];
+    if (!metadata) {
+        return nameTable;
+    }
 
-        name = new printer.ExportName(className);
+    var sp = metadata.sp;
+
+    var queue = Object.keys(sp);
+    var names = { };
+
+    function get(className) {
+        if (!Object.prototype.hasOwnProperty.call(names, className)) {
+            processQueueItem(className);
+        }
+        return names[className];
+    }
+
+    function processQueueItem(className) {
+        queue.splice(queue.indexOf(className), 1);
+
+        var classDef = sp[className];
+
+        var name = new printer.ExportName(className);
         name.get_ast = function() {
             return [ "dot", [ "name", "sp" ], this ];
         };
         name.needs_import = false;
 
-        var classScope = new printer.ClassScope(className, classDef.super, null);
+        var superName = classDef.super && classDef.super[0] ? get(classDef.super[0]) : null;
+        var classScope = new printer.ClassScope(className, superName, null);
         name.class_scope = classScope;
 
         var proto = classDef.prototype;
@@ -82,8 +99,12 @@ function getNameTable(metadata) {
         }
 
         nameTable.add(classDef.package, name);
-    });
-    debugger;
+        names[className] = name;
+    }
+
+    while (queue.length) {
+        processQueueItem(queue[0]);
+    }
 
     return nameTable;
 }
