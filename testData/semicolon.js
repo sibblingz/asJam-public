@@ -1,1 +1,1 @@
-var Foobar=sp.Class.create("Foobar",{methods:{a:function a(){},b:function b(){},c:function c(){}}})
+var Foobar=sp.Class.create("Foobar",{prebound:{a:function a(){},b:function b(){},c:function c(){}}})

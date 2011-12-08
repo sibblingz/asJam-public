@@ -1,1 +1,1 @@
-define([],function(){var MyClass=sp.Class.create("MyClass",{methods:{myFunction:function myFunction(){}}});return MyClass})
+define([],function(){var MyClass=sp.Class.create("MyClass",{prebound:{myFunction:function myFunction(){}}});return MyClass})
