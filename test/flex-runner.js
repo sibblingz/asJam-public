@@ -69,7 +69,7 @@
     var codes = { };
 
     function load(sourceDir, vmContext) {
-        var nameTable = new NameTable();
+        var nameTable = NameTable.create();
         var outputs = convert.project(sourceDir, nameTable, options);
         var scripts = { };
 

@@ -7,7 +7,8 @@ var optimist = require('optimist')
     .describe({
         'metadata-json':      'Use the given JSON Spaceport metadata file',
         'metadata-js':        'Use the given Spaceport metadata module',
-        'ignore-dot-files':   'Ignore dot files'
+        'ignore-dot-files':   'Ignore dot files',
+        'debug':              'Spew debug information'
     })
     .string([ 'metadata-json', 'metadata-js' ])
     .boolean([ 'ignore-dot-files' ])
@@ -52,63 +53,6 @@ function mkdirPSync(p, mode) {
     });
 }
 
-function getNameTable(metadata) {
-    var nameTable = new NameTable();
-    if (!metadata) {
-        return nameTable;
-    }
-
-    var sp = metadata.sp;
-
-    var queue = Object.keys(sp);
-    var names = { };
-
-    function get(className) {
-        if (!Object.prototype.hasOwnProperty.call(names, className)) {
-            processQueueItem(className);
-        }
-        return names[className];
-    }
-
-    function processQueueItem(className) {
-        queue.splice(queue.indexOf(className), 1);
-
-        var classDef = sp[className];
-
-        var name = new printer.ExportName(className);
-        name.get_ast = function() {
-            return [ "dot", [ "name", "sp" ], this ];
-        };
-        name.needs_import = false;
-
-        var superName = classDef.super && classDef.super[0] ? get(classDef.super[0]) : null;
-        var classScope = new printer.ClassScope(className, superName, null);
-        name.class_scope = classScope;
-
-        var proto = classDef.prototype;
-        if (proto) {
-            Object.keys(proto).map(function (memberName) {
-                var member = proto[memberName];
-
-                var nom = new printer.Name(memberName);
-                nom.type = member.args ? 'Function' : member.type;
-                return nom;
-            }).forEach(function (nom) {
-                classScope.define(nom);
-            });
-        }
-
-        nameTable.add(classDef.package, name);
-        names[className] = name;
-    }
-
-    while (queue.length) {
-        processQueueItem(queue[0]);
-    }
-
-    return nameTable;
-}
-
 var metadata = null;
 if (argv['metadata-json']) {
     metadata = JSON.parse(fs.readFileSync(argv['metadata-json'], 'utf8'));
@@ -120,25 +64,37 @@ if (destDir) {
     // Project
     var lastStep = 'initializing';
 
-    var nameTable = getNameTable(metadata);
+    function step(message) {
+        lastStep = message;
+        if (argv.debug) {
+            console.log(message);
+        }
+    }
+
+    var nameTable = NameTable.create(metadata);
     var options = {
         read: function (filename) {
-            lastStep = 'reading ' + filename;
+            step('reading ' + filename);
         },
         parse: function (filename) {
-            lastStep = 'parsing ' + filename;
+            step('parsing ' + filename);
         },
         parse_error: function (err, filename) {
             console.error('Error converting project while parsing ' + filename + ':');
-            console.error(err.toString());
+            if (argv.debug) {
+                console.error(err.stack);
+            } else {
+                console.error(err.toString());
+            }
         },
         build_exports: function (filename) {
-            lastStep = filename
+            step(filename
                 ? 'building exports from ' + filename
-                : 'building exports';
+                : 'building exports'
+            );
         },
         rewrite: function (filename) {
-            lastStep = 'converting ' + filename;
+            step('converting ' + filename);
         },
         ignore_dot_files: argv['ignore-dot-files']
     };
@@ -147,7 +103,11 @@ if (destDir) {
         outputs = convert.project(sourceDir, nameTable, options);
     } catch (e) {
         console.error('Error converting project while ' + lastStep + ':');
-        console.error(e.toString());
+        if (argv.debug) {
+            console.error(e.stack);
+        } else {
+            console.error(e.toString());
+        }
         process.exit(1);
     }
 

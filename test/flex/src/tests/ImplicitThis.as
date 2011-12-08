@@ -1,6 +1,6 @@
 package tests
 {
-	public class ImplicitThis
+	public dynamic class ImplicitThis
 	{
 		private var i = 0;
 
@@ -11,7 +11,8 @@ package tests
 		
 		public static var testNames:Array = [
 			'method',
-			'changeLocalVar'//,
+			'changeLocalVar',
+			'callObjectHasOwnProperty'//,
 			//'difference',
 			//'manyDifference'
 		];
@@ -25,6 +26,16 @@ package tests
 			var bar = new ImplicitThis();
 			bar.changeValue();
 				
+		}
+		
+		public static function callObjectHasOwnProperty() {
+			var x = new ImplicitThis();
+			x.callObjectHasOwnProperty();
+		}
+		
+		public function callObjectHasOwnProperty() {
+			this.hello = 'world';
+			Assert.equal(true, hasOwnProperty('hello'));
 		}
 		
 		public function fred(){
