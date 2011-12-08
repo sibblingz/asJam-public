@@ -5,10 +5,11 @@ var optimist = require('optimist')
     .wrap(80)
     .usage('Usage: $0 [options] input-dir-or-file [output-dir]')
     .describe({
-        'defs':               'Use the given JSON Spaceport definition file',
+        'metadata-json':      'Use the given JSON Spaceport metadata file',
+        'metadata-js':        'Use the given Spaceport metadata module',
         'ignore-dot-files':   'Ignore dot files'
     })
-    .string([ 'defs' ])
+    .string([ 'metadata-json', 'metadata-js' ])
     .boolean([ 'ignore-dot-files' ])
     .default({
         'ignore-dot-files': false
@@ -51,102 +52,12 @@ function mkdirPSync(p, mode) {
     });
 }
 
-function getNameTable(defs) {
-    defs = defs || { };
-
-    var sp = [
-        [ "flash.display", "Bitmap" ],
-        [ "flash.display", "BitmapData" ],
-        [ "flash.display", "BitmapDataChannel" ],
-        [ "flash.display", "BlendMode" ],
-        [ "flash.display", "DisplayObject" ],
-        [ "flash.display", "DisplayObjectContainer" ],
-        [ "flash.display", "FrameLabel" ],
-        [ "flash.display", "Graphics" ],
-        [ "flash.display", "IBitmapDrawable" ],
-        [ "flash.display", "Loader" ],
-        [ "flash.display", "LoaderInfo" ],
-        [ "flash.display", "MovieClip" ],
-        [ "flash.display", "Shape" ],
-        [ "flash.display", "SimpleButton" ],
-        [ "flash.display", "Sprite" ],
-        [ "flash.display", "Stage" ],
-        [ "flash.display", "StageDisplayState" ],
-        [ "flash.errors", "IOError" ],
-        [ "flash.errors", "IllegalOperationError" ],
-        [ "flash.events", "Event" ],
-        [ "flash.events", "EventDispatcher" ],
-        [ "flash.events", "FocusEvent" ],
-        [ "flash.events", "HTTPStatusEvent" ],
-        [ "flash.events", "IOErrorEvent" ],
-        [ "flash.events", "KeyboardEvent" ],
-        [ "flash.events", "MouseEvent" ],
-        [ "flash.events", "ProgressEvent" ],
-        [ "flash.events", "SecurityErrorEvent" ],
-        [ "flash.events", "StatusEvent" ],
-        [ "flash.events", "TextEvent" ],
-        [ "flash.events", "TimerEvent" ],
-        [ "flash.external", "ExternalInterface" ],
-        [ "flash.filters", "BitmapFilter" ],
-        [ "flash.filters", "BitmapFilterQuality" ],
-        [ "flash.filters", "BlurFilter" ],
-        [ "flash.filters", "ColorMatrixFilter" ],
-        [ "flash.filters", "GlowFilter" ],
-        [ "flash.geom", "ColorTransform" ],
-        [ "flash.geom", "Matrix" ],
-        [ "flash.geom", "Point" ],
-        [ "flash.geom", "Rectangle" ],
-        [ "flash.geom", "Transform" ],
-        [ "flash.media", "Sound" ],
-        [ "flash.media", "SoundChannel" ],
-        [ "flash.media", "SoundLoaderContext" ],
-        [ "flash.media", "SoundMixer" ],
-        [ "flash.media", "SoundTransform" ],
-        [ "flash.net", "LocalConnection" ],
-        [ "flash.net", "SharedObject" ],
-        [ "flash.net", "URLLoader" ],
-        [ "flash.net", "URLRequest" ],
-        [ "flash.net", "URLRequestMethod" ],
-        [ "flash.net", "URLVariables" ],
-        [ "flash.net", "navigateToURL" ],
-        [ "flash.profiler", "showRedrawRegions" ],
-        [ "flash.sampler", "StackFrame" ],
-        [ "flash.sampler", "getInvocationCount" ],
-        [ "flash.system", "ApplicationDomain" ],
-        [ "flash.system", "Capabilities" ],
-        [ "flash.system", "LoaderContext" ],
-        [ "flash.system", "Security" ],
-        [ "flash.system", "SecurityPanel" ],
-        [ "flash.system", "System" ],
-        [ "flash.text", "AntiAliasType" ],
-        [ "flash.text", "Font" ],
-        [ "flash.text", "StyleSheet" ],
-        [ "flash.text", "TextField" ],
-        [ "flash.text", "TextFieldAutoSize" ],
-        [ "flash.text", "TextFieldType" ],
-        [ "flash.text", "TextFormat" ],
-        [ "flash.text", "TextFormatAlign" ],
-        [ "flash.ui", "Keyboard" ],
-        [ "flash.ui", "Mouse" ],
-        [ "flash.utils", "ByteArray" ],
-        [ "flash.utils", "Dictionary" ],
-        [ "flash.utils", "Endian" ],
-        [ "flash.utils", "Proxy" ],
-        [ "flash.utils", "Timer" ],
-        [ "flash.utils", "clearInterval" ],
-        [ "flash.utils", "describeType" ],
-        [ "flash.utils", "flash_proxy" ],
-        [ "flash.utils", "getDefinitionByName" ],
-        [ "flash.utils", "getQualifiedClassName" ],
-        [ "flash.utils", "getTimer" ],
-        [ "flash.utils", "setInterval" ],
-    ];
+function getNameTable(metadata) {
+    metadata = metadata || { };
 
     var nameTable = new NameTable();
-
-    sp.forEach(function (sp) {
-        var namespace = sp[0];
-        var className = sp[1];
+    Object.keys(metadata.sp).forEach(function (className) {
+        var classDef = metadata.sp[className];
 
         name = new printer.ExportName(className);
         name.get_ast = function() {
@@ -154,37 +65,41 @@ function getNameTable(defs) {
         };
         name.needs_import = false;
 
-        if (Object.prototype.hasOwnProperty.call(defs, className)) {
-            var def = defs[className];
-            var classScope = new printer.ClassScope(className, def.superClass, null);
-            name.class_scope = classScope;
+        var classScope = new printer.ClassScope(className, classDef.super, null);
+        name.class_scope = classScope;
 
-            var memberNames = def.members.map(function (member) {
-                var memberName = new printer.Name(member.name);
-                memberName.type = member.type;
-                return memberName;
+        var proto = classDef.prototype;
+        if (proto) {
+            Object.keys(proto).map(function (memberName) {
+                var member = proto[memberName];
+
+                var nom = new printer.Name(memberName);
+                nom.type = member.args ? 'Function' : member.type;
+                return nom;
+            }).forEach(function (nom) {
+                classScope.define(nom);
             });
-
-            memberNames.forEach(classScope.define, classScope);
         }
 
-        nameTable.add(namespace, name);
+        nameTable.add(classDef.package, name);
     });
+    debugger;
 
     return nameTable;
 }
 
-var defs = null;
-
-if (argv.defs) {
-    defs = JSON.parse(fs.readFileSync(argv.defs, 'utf8'));
+var metadata = null;
+if (argv['metadata-json']) {
+    metadata = JSON.parse(fs.readFileSync(argv['metadata-json'], 'utf8'));
+} else if (argv['metadata-js']) {
+    metadata = require(process.cwd() + '/' + argv['metadata-js']);
 }
 
 if (destDir) {
     // Project
     var lastStep = 'initializing';
 
-    var nameTable = getNameTable(defs);
+    var nameTable = getNameTable(metadata);
     var options = {
         read: function (filename) {
             lastStep = 'reading ' + filename;
