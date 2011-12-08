@@ -1,4 +1,12 @@
 (function (require) {
+    var options = {
+        read:           console.log.bind(console, 'Reading'),
+        parse:          console.log.bind(console, 'Parsing'),
+        parse_error:    console.error.bind(console, 'Parse error'),
+        build_exports:  console.log.bind(console, 'Building exports'),
+        rewrite:        console.log.bind(console, 'Rewriting'),
+    };
+
     // Node.JS is retarded and doesn't flush output streams when porcess.exit
     // is called.  We thus need to manually wait for the flushes to occur, then
     // exit.
@@ -62,7 +70,7 @@
 
     function load(sourceDir, vmContext) {
         var nameTable = new NameTable();
-        var outputs = convert.project(sourceDir, nameTable);
+        var outputs = convert.project(sourceDir, nameTable, options);
         var scripts = { };
 
         Object.keys(outputs).forEach(function (outputPath) {

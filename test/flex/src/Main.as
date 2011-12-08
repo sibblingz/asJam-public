@@ -1,9 +1,13 @@
 package {
-	import superTests.SuperTests;
-	import tests.ImplicitThis;
-	import interfaceTests.InterfaceTester;
 	import defaultParameters.DefaultParamTests;
+	
 	import fqn.SelfReferences;
+	
+	import interfaceTests.InterfaceTester;
+	
+	import superTests.SuperTests;
+	
+	import tests.ImplicitThis;
 
 	public class Main {
 		public function Main() {
@@ -16,7 +20,8 @@ package {
 			ImplicitThis,
 			DefaultParamTests,
 			InterfaceTester,
-			SelfReferences
+			SelfReferences,
+			JSONTests
 		];
 		
 		public static function run():void {
