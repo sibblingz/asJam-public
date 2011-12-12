@@ -4,19 +4,26 @@ package {
 			throw new Error('Assert is a static class');
 		}
 		
-		public static function expectedMessage( expected:*,actual:*):String {
+		public static function expectedMessage(expected:*, actual:*):String {
 			return 'expected: ' + expected + ' but got: ' + actual;
 		}
 
 		public static function equal(expected:*, actual:*, message:String = null):void {
-			ok(expected == actual, message + " " + ('Equal: ' + expectedMessage(expected, actual)));
+			same(expected, actual, message);
+			//ok(expected == actual, message + " " + ('Equal: ' + expectedMessage(expected, actual)));
 		}
 		
 		public static function same(expected:*, actual:*, message:String = null):void {
-			ok(expected === actual, message + " " + ('Same: ' + expectedMessage(expected,actual)));
+			message = message + " Same: " + expectedMessage(expected, actual);
+
+			if(typeof expected === 'number' && typeof actual === 'number' && isNaN(expected) && isNaN(actual)) {
+				ok(true, message);
+			} else {
+				ok(expected === actual, message);
+			}
 		}
 
-		public static function arrayEqual( expected:Array,actual:Array, message:String = null):void {
+		public static function arrayEqual(expected:Array, actual:Array, message:String = null):void {
 			ok(!!actual, expectedMessage(expected, actual));
 
 			if(actual.length !== expected.length)

@@ -16,6 +16,7 @@ package {
 		public static var testSuiteClasses = [
 			MathTests,
 			DefaultArguments,
+			TypesTests,
 			//SuperTests,
 			ImplicitThis,
 			DefaultParamTests,
