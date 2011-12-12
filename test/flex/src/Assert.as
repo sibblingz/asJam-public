@@ -52,9 +52,7 @@ class AssertError extends Error {
 		this.message = message;
 	}
 
-	private var message:String;
-
-	public function toString():void {
+	public function toString():String {
 		return this.message;
 	}
 }
