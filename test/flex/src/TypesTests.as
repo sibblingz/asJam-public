@@ -2,7 +2,9 @@ package {
 	public class TypesTests {
 		public static var testNames:Array = [
 			'testIntDefault',
+			'testIntNull',
 			'testUintDefault',
+			'testUintNull',
 			'testNumberDefault',
 			'testNumberNull',
 			'testBooleanDefault',
@@ -15,8 +17,18 @@ package {
 			Assert.equal(0, v);
 		}
 
+		public static function testIntNull():void {
+			var v:int = null;
+			Assert.equal(0, v);
+		}
+
 		public static function testUintDefault():void {
 			var v:uint;
+			Assert.equal(0, v);
+		}
+
+		public static function testUintNull():void {
+			var v:uint = null;
 			Assert.equal(0, v);
 		}
 
