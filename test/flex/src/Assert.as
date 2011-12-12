@@ -47,6 +47,14 @@ package {
 
 class AssertError extends Error {
 	public function AssertError(message:String) {
-		super('Assertion failed: ' + (message || ''));
+		message = 'Assertion failed: ' + (message || '');
+		super(message);
+		this.message = message;
+	}
+
+	private var message:String;
+
+	public function toString():void {
+		return this.message;
 	}
 }
