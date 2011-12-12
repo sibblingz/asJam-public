@@ -1,1 +1,1 @@
-var Foobar=sp.Class.create("Foobar",EventDispatcher,{constructor:function Foobar(){EventDispatcher.apply(this,arguments)}})
+var Foobar=sp.Class.create("Foobar",EventDispatcher,{constructor:function Foobar(){sp.superOf(this).constructorArgs(arguments)}})

@@ -8,7 +8,7 @@ var printer = require('../lib/print');
 var testDataDir = path.join(__dirname, '..', 'testData');
 
 function testScript(testName, callback) {
-    var sourceFilename = path.join(testDataDir, testName + '.as3');
+    var sourceFilename = path.join(testDataDir, testName + '.as');
     var expectedFilename = path.join(testDataDir, testName + '.js');
 
     var source = fs.readFileSync(sourceFilename, 'utf8');

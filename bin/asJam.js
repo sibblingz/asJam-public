@@ -58,7 +58,7 @@ var metadata = null;
 if (argv['metadata-json']) {
     metadata = JSON.parse(fs.readFileSync(argv['metadata-json'], 'utf8'));
 } else if (argv['metadata-js']) {
-    metadata = require(process.cwd() + '/' + argv['metadata-js']);
+    metadata = require(path.resolve(process.cwd(), argv['metadata-js']));
 }
 
 if (destDir) {
