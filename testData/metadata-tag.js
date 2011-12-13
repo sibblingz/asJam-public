@@ -1,1 +1,1 @@
-define([],function(){var Foobar=sp.Class.create("Foobar",{methods:{bla:{get:function get_bla(){return 42}}},prebound:{foo:function foo(){}},properties:{ico:"asdf"}});return Foobar})
+define([],function(){var Foobar=sp.Class.create("Foobar",{properties:{ico:"asdf"},prebound:{foo:function foo(){}},methods:{bla:{get:function get_bla(){return 42}}}});return Foobar})

@@ -1,1 +1,1 @@
-var StaticTest=sp.Class.create("StaticTest",{prebound:{foo:function foo(){StaticTest.bla=StaticTest.bar(StaticTest.baz);StaticTest.bla=StaticTest.bar(StaticTest.baz)}},statics:{bar:function bar(baz){return baz},baz:42,bla:null}})
+var StaticTest=sp.Class.create("StaticTest",{prebound:{foo:function foo(){StaticTest.bla=StaticTest.bar(StaticTest.baz);StaticTest.bla=StaticTest.bar(StaticTest.baz)}},statics:{baz:42,bla:null,bar:function bar(baz){return baz}}})

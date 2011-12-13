@@ -1,1 +1,1 @@
-var Parent=sp.Class.create("Parent",{prebound:{method:function method(){}},properties:{prop:null}});var Child=sp.Class.create("Child",Parent,{prebound:{cc:function cc(){var self=this;self.pp=self.method();self.prop=self.cc()}},properties:{pp:null}})
+var Parent=sp.Class.create("Parent",{properties:{prop:null},prebound:{method:function method(){}}});var Child=sp.Class.create("Child",Parent,{properties:{pp:null},prebound:{cc:function cc(){var self=this;self.pp=self.method();self.prop=self.cc()}}})
