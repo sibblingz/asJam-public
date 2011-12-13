@@ -8,7 +8,7 @@ var optimist = require('optimist')
         'metadata-json':      'Use the given JSON Spaceport metadata file',
         'metadata-js':        'Use the given Spaceport metadata module',
         'ignore-dot-files':   'Ignore dot files',
-        'check-cycles':       'Check for ciruclar dependencies (requires unrequire)',
+        'check-cycles':       'Check for ciruclar dependencies',
         'debug':              'Spew debug information'
     })
     .string([ 'metadata-json', 'metadata-js' ])
