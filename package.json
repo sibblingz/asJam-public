@@ -10,5 +10,7 @@
         "asJam": "bin/asJam.js"
     },
     "main": "index",
-    "engine": "node 0.4.x"
+    "engines": {
+        "node": "0.4.x"
+    }
 }
