@@ -11,6 +11,6 @@
     },
     "main": "index",
     "engines": {
-        "node": "0.4.x"
+        "node": "0.4.x || 0.6.x"
     }
 }

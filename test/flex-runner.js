@@ -11,7 +11,7 @@
     // is called.  We thus need to manually wait for the flushes to occur, then
     // exit.
     function waitStream(stream, callback) {
-        if (stream.writable) {
+        if (stream.writable && process.versions.node < '0.6.0') {
             stream.on('close', function () {
                 callback(null);
             });
