@@ -1,1 +1,1 @@
-var foo=new Rectangle
+var foo=new Rectangle()
