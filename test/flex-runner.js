@@ -7,7 +7,7 @@
         rewrite:        console.log.bind(console, 'Rewriting'),
     };
 
-    // Node.JS is retarded and doesn't flush output streams when porcess.exit
+    // Node.JS is retarded and doesn't flush output streams when process.exit
     // is called.  We thus need to manually wait for the flushes to occur, then
     // exit.
     function waitStream(stream, callback) {
