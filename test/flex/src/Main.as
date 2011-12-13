@@ -1,6 +1,7 @@
 package {
 	import defaultParameters.DefaultParamTests;
 	
+	import fqn.ExternalReferences;
 	import fqn.SelfReferences;
 	
 	import interfaceTests.InterfaceTester;
@@ -22,6 +23,7 @@ package {
 			DefaultParamTests,
 			InterfaceTester,
 			SelfReferences,
+			ExternalReferences,
 			JSONTests
 		];
 		
