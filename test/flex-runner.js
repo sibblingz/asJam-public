@@ -38,6 +38,7 @@
 
         function check() {
             if (doneCount === 2) {
+                process.exit(1);
             }
         }
 
