@@ -62,7 +62,7 @@
 
     var NameTable = require('../lib/namespace').NameTable;
 
-    var SPACEPORT_PATH = path.join(__dirname, '..', '..', 'spaceport', 'client', 'spaceport.js');
+    var SPACEPORT_PATH = path.join(__dirname, '..', 'dist', 'spaceport-node.js');
     if (process.argv.length === 3) {
         SPACEPORT_PATH = process.argv[2];
     }
