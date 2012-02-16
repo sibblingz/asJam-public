@@ -15,7 +15,7 @@ var optimist = require('optimist')
     .boolean([ 'ignore-dot-files' ])
     .default({
         'ignore-dot-files': false,
-        'metadata-json': path.join(__dirname, '..', 'dist', 'spaceport.json'
+        'metadata-json': path.join(__dirname, '..', 'dist', 'spaceport.json')
     });
 
 var argv = optimist.argv;
