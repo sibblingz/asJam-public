@@ -26,6 +26,7 @@ package {
 			SelfReferences,
 			ExternalReferences,
 			ExternalReferences2,
+			StaticCallInCtor,
 			JSONTests
 		];
 		
