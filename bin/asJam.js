@@ -10,7 +10,6 @@ var optimist = require('optimist')
         'metadata-json':      'Use the given JSON Spaceport metadata file',
         'metadata-js':        'Use the given Spaceport metadata module',
         'ignore-dot-files':   'Ignore dot files',
-        'check-cycles':       'Check for ciruclar dependencies',
         'debug':              'Spew debug information'
     })
     .string([ 'metadata-json', 'metadata-js' ])
@@ -118,109 +117,6 @@ if (destDir) {
     if (Object.keys(outputs).length === 0) {
         console.error('Could not find any .as files to convert');
         process.exit(2);
-    }
-
-    if (argv['check-cycles']) {
-        var deps = { }; // Map Dependant (Map Dependee UseCount)
-        var flatDeps = { }; // Map Dependant Dependee
-        Object.keys(outputs).forEach(function (outputPath) {
-            var ast = outputs[outputPath];
-            var weights = printer.get_dependency_weights(ast);
-            deps[outputPath] = weights;
-            flatDeps[outputPath] = Object.keys(weights);
-        });
-
-        var hasOwn = Object.prototype.hasOwnProperty;
-
-        function findCycles(graph, vertices) {
-            function traverseDepthFirst(node, graph, visitedNodes){
-                if (visitedNodes[node]) {
-                    return [ node ];
-                }
-                visitedNodes[node] = true;
-                var adjacentNodes = graph[node];
-                for (var i = 0; i < adjacentNodes.length; i++) {
-                    var cycle = traverseDepthFirst(adjacentNodes[i], graph, visitedNodes);
-                    if (cycle) {
-                        return [ node ].concat(cycle);
-                    }
-                }
-                visitedNodes[node] = false;
-                return null;
-            }
-
-            function simplifyCycle(stack){
-                return alphabeticallySort(
-                    stack.slice(stack.indexOf(stack[stack.length - 1]) + 1)
-                );
-            }
-
-            function alphabeticallySort(stack){
-                var least = stack[0];
-                var index = 0;
-                stack.forEach(function (temp, i) {
-                    if (temp < least) {
-                        least = temp;
-                        index = i;
-                    }
-                });
-
-                // Cycle left by index elements
-                return stack.slice(index).concat(stack.slice(0, index));
-            }
-
-            var allCycles = { };
-            Object.keys(graph).forEach(function (node) {
-                var visitedNodes = { };
-                var cycle = traverseDepthFirst(node, graph, visitedNodes);
-                if (cycle) {
-                    cycle = simplifyCycle(cycle);
-                    allCycles[JSON.stringify(cycle)] = cycle;
-                }
-            });
-
-            return Object.keys(allCycles).map(function (name) {
-                return allCycles[name];
-            });
-        }
-
-        var cycles = findCycles(flatDeps, Object.keys(outputs));
-        cycles = cycles.filter(function (cycle) {
-            return cycle.length > 1;
-        });
-        cycles.forEach(function (cycle) {
-            var moduleWeights = [ ]; // [(ModuleName,UseCount)]
-            cycle.forEach(function (module) {
-                var weight = 0;
-                Object.keys(deps).forEach(function (depName) {
-                    var weights = deps[depName];
-                    if (weights && weights[module]) {
-                        weight += weights[module];
-                    }
-                });
-
-                moduleWeights.push([ module, weight ]);
-            });
-
-            moduleWeights.sort(function (a, b) {
-                if (a[1] > b[1]) {
-                    return +1;
-                } else if (a[1] < b[1]) {
-                    return -1;
-                } else {
-                    return 0;
-                }
-            });
-
-            var minModule = moduleWeights[0][0];
-            var minModuleIndex = cycle.indexOf(minModule);
-            var minModuleDependant = minModuleIndex === 0 ? cycle[cycle.length - 1] : cycle[minModuleIndex - 1];
-
-            console.warn("");
-            console.warn("Dependency cycle detected between the following modules:");
-            console.warn("> " + cycle.join("\n> "));
-            console.warn("We suggest you refactor " + minModuleDependant + " so it does not depend on " + minModule);
-        });
     }
 
     Object.keys(outputs).forEach(function (outputPath) {

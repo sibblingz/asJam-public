@@ -11,6 +11,10 @@ package {
 	
 	import tests.ImplicitThis;
 
+	import cycles.A;
+	import cycles.B;
+	import cycles.C;
+
 	public class Main {
 		public function Main() {
 		}
@@ -27,6 +31,7 @@ package {
 			ExternalReferences,
 			ExternalReferences2,
 			StaticCallInCtor,
+			A, B, C,
 			JSONTests
 		];
 		
