@@ -1,5 +1,5 @@
 package cycles {
-    import cycles.A;
+    import cycles.CycleA;
 
     class C {
         public static var testNames:Array = [
@@ -7,7 +7,11 @@ package cycles {
         ];
 
         public static function test():void {
-            Assert.equal("A", A.name);
+            Assert.equal("A", CycleA.stupidFunctionName());
         }
+		
+		public static function stupidFunctionName():String {
+			return "B";
+		}
     }
 }

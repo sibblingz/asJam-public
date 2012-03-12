@@ -1,5 +1,4 @@
 package {
-	import com.adobe.serialization.json.JSON;
 	import com.adobe.serialization.json.JSONDecoder;
 	import com.adobe.serialization.json.JSONEncoder;
 
@@ -10,11 +9,11 @@ package {
 		];
 
 		public static function jsonEncodeStatic() {
-			Assert.equal('{"hello":"world"}', JSON.encode({ hello: 'world' }));
+			Assert.equal('{"hello":"world"}', com.adobe.serialization.json.JSON.encode({ hello: 'world' }));
 		}
 
 		public static function jsonDecodeStatic() {
-			var obj = JSON.decode('{"hello":"world"}');
+			var obj = com.adobe.serialization.json.JSON.decode('{"hello":"world"}');
 			Assert.equal('world', obj.hello);
 		}
 

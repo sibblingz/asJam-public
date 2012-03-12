@@ -7,7 +7,11 @@ package cycles {
         ];
 
         public static function test():void {
-            Assert.equal("C", C.name);
+            Assert.equal("C", C.stupidFunctionName());
         }
+		
+		public static function stupidFunctionName():String {
+			return "B";
+		}
     }
 }

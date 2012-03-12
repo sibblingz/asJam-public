@@ -1,4 +1,11 @@
 package {
+	/*
+	import cycles.CycleA;
+	import cycles.B;
+	import cycles.C;
+	*/
+	import cycles.SimpleCycle1;
+	
 	import defaultParameters.DefaultParamTests;
 	
 	import fqn.ExternalReferences;
@@ -10,10 +17,6 @@ package {
 	import superTests.SuperTests;
 	
 	import tests.ImplicitThis;
-
-	import cycles.A;
-	import cycles.B;
-	import cycles.C;
 
 	public class Main {
 		public function Main() {
@@ -31,12 +34,15 @@ package {
 			ExternalReferences,
 			ExternalReferences2,
 			StaticCallInCtor,
-			A, B, C,
+			//CycleA, B, C,
+			SimpleCycle1,
 			JSONTests
+			
 		];
 		
 		public static function run():void {
 			testAll();
+			trace("ALL TESTS PASS");
 		}
 		
 		public static function testAll():void {
