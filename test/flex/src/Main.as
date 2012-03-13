@@ -5,6 +5,12 @@ package {
 	import cycles.C;
 	*/
 	import cycles.SimpleCycle1;
+	import cycles.inheritance.SubClass1;
+	import cycles.large.Five;
+	import cycles.large.Four;
+	import cycles.large.One;
+	import cycles.large.Three;
+	import cycles.large.Two;
 	
 	import defaultParameters.DefaultParamTests;
 	
@@ -36,6 +42,8 @@ package {
 			StaticCallInCtor,
 			//CycleA, B, C,
 			SimpleCycle1,
+			SubClass1,
+			One, Two, Three, Four, Five,
 			JSONTests
 			
 		];
