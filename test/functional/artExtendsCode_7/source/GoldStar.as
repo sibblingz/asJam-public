@@ -1,0 +1,1 @@
+﻿package  {		import flash.display.MovieClip;			public class GoldStar extends MovieClip {						public function GoldStar() {			// constructor code			return;			this.scaleX = 0.5;		}	}	}
