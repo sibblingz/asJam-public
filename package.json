@@ -2,7 +2,7 @@
     "name": "asJam",
     "description": "A jam of ActionScript",
     "author": "Matt Glazar <matt.glazar@gmail.com>",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "main": "bin/asJam.js",
     "scripts": {
         "test": "make test"
