@@ -4,6 +4,7 @@ var optimist = require('optimist')
     .wrap(80)
     .usage('Usage: $0 [options] input-dir/ output-dir/')
     .describe({
+        'swfj':               'Use the given SWFJ file for art class information',
         'metadata-json':      'Use the given JSON Spaceport metadata file',
         'ignore-dot-files':   'Ignore dot files',
         'debug':              'Spew debug information'
