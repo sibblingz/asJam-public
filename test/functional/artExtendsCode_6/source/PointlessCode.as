@@ -1,0 +1,1 @@
+﻿package  {		import flash.display.MovieClip;			public class PointlessCode extends MovieClip {						public function PointlessCode() {			// constructor code		}	}	}
