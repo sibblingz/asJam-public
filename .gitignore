@@ -1,1 +1,4 @@
 node_modules/
+
+# Ben keeps committing zip files with Spaceport internals!
+*.zip
