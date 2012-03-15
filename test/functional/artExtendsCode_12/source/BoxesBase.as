@@ -1,0 +1,1 @@
+﻿package  {		import flash.display.MovieClip;			public class BoxesBase extends MovieClip {						public function BoxesBase() {			var box = new Box();			addChildAt(box, 0);			this.box0.visible = false;		}	}	}
