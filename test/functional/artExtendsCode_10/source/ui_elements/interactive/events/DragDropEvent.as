@@ -1,0 +1,1 @@
+﻿package interactive.events {	import flash.events.Event;	import flash.display.DisplayObject;		public class DragDropEvent extends Event {		public var draggedObject:DisplayObject;				public function DragDropEvent(obj) {			super("dragDrop");			this.draggedObject = obj;			// constructor code		}	}	}

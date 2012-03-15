@@ -1,0 +1,1 @@
+﻿package screens {	public class Popup extends Screen{		public function Popup() {			// constructor code			super();			var closeButtons = this.wireUpButtons('closeButton', this.hide);			trace("and now? " + this.closeButton.onClick);		}				public function hide(){			trace("HERE");			this.parent.removeChild(this);		}	}	}

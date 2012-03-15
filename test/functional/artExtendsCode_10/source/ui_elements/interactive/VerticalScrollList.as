@@ -1,0 +1,1 @@
+﻿package interactive {		public class VerticalScrollList extends ScrollList{				public function VerticalScrollList() {			// constructor code			this.direction = ScrollList.VERTICAL;						super();		}	}	}
