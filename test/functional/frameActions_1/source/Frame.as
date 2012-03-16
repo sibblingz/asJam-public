@@ -1,0 +1,1 @@
+﻿package  {		import flash.display.MovieClip;	import flash.events.Event;		public class Frame extends MovieClip {				private var count:int = 0;				public function Frame() {			// constructor code			addEventListener( "top", this.onTopEvent );		}				private function onTopEvent( evt:Event ):void{			count += 1;			counter.text = count.toString(10);		}	}	}
