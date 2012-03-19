@@ -92,6 +92,16 @@ package xml
 			}
 			Assert.equal( 4, counter );
 			
+			
+			counter = 0;
+			for(var j:int = 0; j < parsed.children().length(); j++)
+			{
+				var child:XML = parsed.children()[j];
+				counter += 1;
+			}
+			Assert.equal( 7, counter );
+			
+			
 			parsed = XML( deeplyNestedTestInput );
 			counter = 0;
 			for each( var child:* in parsed..leaf ){
@@ -100,6 +110,8 @@ package xml
 				counter += 1;
 			}
 			Assert.equal( 5, counter );
+			
+			
 			
 			return true;
 		}
