@@ -5,7 +5,8 @@ package xml
 		public static var testInput:String = '<test p="dude" q="8" w="0.846" x="your mom"><hork></hork><hork></hork><hork></hork><hork></hork><bork></bork><bork></bork><widget></widget></test>';
 
 		public static var testNames:Array = [
-			'testProperties'
+			'testProperties',
+			'testChildren'
 		];
 		
 		public static function testProperties():Boolean {
@@ -46,6 +47,22 @@ package xml
 			Assert.isType( XML, obj );
 			Assert.equal( "your mom", obj.toString() );
 			
+			return true;
+		}
+		
+		public static function testChildren():Boolean{
+			var parsed:XML = XML(testInput);
+			
+			var children:* = parsed.children();
+			var child:*;
+			
+			Assert.isType( XMLList, children );
+			Assert.equal( 7, children.length() );
+			child = children[0];
+			Assert.isType( XML, child );
+			Assert.equal( "<hork/>", child.toXMLString() );
+			
+			trace("alive");
 			return true;
 		}
 		
