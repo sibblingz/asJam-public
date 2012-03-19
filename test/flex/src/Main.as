@@ -23,6 +23,8 @@ package {
 	import superTests.SuperTests;
 	
 	import tests.ImplicitThis;
+	
+	import xml.XMLTests;
 
 	public class Main {
 		public function Main() {
@@ -44,8 +46,8 @@ package {
 			SimpleCycle1,
 			SubClass1,
 			One, Two, Three, Four, Five,
-			JSONTests
-			
+			JSONTests,
+			XMLTests
 		];
 		
 		public static function run():void {

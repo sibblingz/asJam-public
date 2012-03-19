@@ -1,4 +1,6 @@
 package {
+	import flash.utils.getQualifiedClassName;
+
 	public class Assert {
 		public function Assert() {
 			throw new Error('Assert is a static class');
@@ -8,6 +10,10 @@ package {
 			return 'expected: ' + expected + ' but got: ' + actual;
 		}
 
+		public static function isType(expectedType:Class, object:*):void{
+			ok( (object is expectedType), "Expected type " + expectedType + ", actually of type: " + getQualifiedClassName(object) ); 
+		}
+		
 		public static function equal(expected:*, actual:*, message:String = null):void {
 			same(expected, actual, message);
 			//ok(expected == actual, message + " " + ('Equal: ' + expectedMessage(expected, actual)));
