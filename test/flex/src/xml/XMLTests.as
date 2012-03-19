@@ -4,7 +4,7 @@ package xml
 	{
 		public static var testInput:String = '<test p="dude" q="8" w="0.846" x="your mom"><hork></hork><hork></hork><hork></hork><hork></hork><bork></bork><bork></bork><widget></widget></test>';
 
-		public static var deeplyNestedTestInput:String = '<root><a><c><h><leaf/></h></c><d><leaf/></d><leaf/></a><b><e><leaf/></e><f><i><leaf/></i></f><g></g></b></root>';
+		public static var deeplyNestedTestInput:String = '<root><a><c><h><leaf/></h></c><d><leaf/></d><leaf/></a><b><e><leaf/><leaf/></e><f><i><leaf/></i></f><g></g></b></root>';
 		
 		public static var testNames:Array = [
 			'testProperties',
@@ -77,6 +77,12 @@ package xml
 			Assert.isType( XMLList, children );
 			Assert.equal( 1, children.length() );
 			
+			
+			parsed = XML(deeplyNestedTestInput);
+			children = parsed.b.e.children();
+			Assert.isType( XMLList, children );
+			Assert.equal( 2, children.length() );
+			
 			trace("alive");
 			return true;
 		}
@@ -109,7 +115,7 @@ package xml
 				Assert.equal( "<leaf/>", child.toXMLString() );
 				counter += 1;
 			}
-			Assert.equal( 5, counter );
+			Assert.equal( 6, counter );
 			
 			
 			
