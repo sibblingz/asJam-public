@@ -62,6 +62,18 @@ package xml
 			Assert.isType( XML, child );
 			Assert.equal( "<hork/>", child.toXMLString() );
 			
+			children = parsed.hork;
+			Assert.isType( XMLList, children );
+			Assert.equal( 4, children.length() );
+			
+			children = parsed.bork;
+			Assert.isType( XMLList, children );
+			Assert.equal( 2, children.length() );
+			
+			children = parsed.widget;
+			Assert.isType( XMLList, children );
+			Assert.equal( 1, children.length() );
+			
 			trace("alive");
 			return true;
 		}
