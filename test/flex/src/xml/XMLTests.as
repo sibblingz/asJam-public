@@ -6,6 +6,8 @@ package xml
 
 		public static var deeplyNestedTestInput:String = '<root><a><c><h><leaf/></h></c><d><leaf/></d><leaf/></a><b><e><leaf/><leaf/></e><f><i><leaf/></i></f><g></g></b></root>';
 		
+		public static var duplicatePropertyInput:String = '<binkie klass="center" klass="left" klass="right"></binkie>';
+		
 		public static var testNames:Array = [
 			'testProperties',
 			'testChildren',
@@ -49,6 +51,13 @@ package xml
 			obj = list[0];
 			Assert.isType( XML, obj );
 			Assert.equal( "your mom", obj.toString() );
+			
+			
+			try{
+				parsed = new XML(duplicatePropertyInput);
+			}catch( e:Error ){
+				Assert.isType( TypeError, e );
+			}
 			
 			return true;
 		}
