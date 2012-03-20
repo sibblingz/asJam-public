@@ -45,13 +45,12 @@ package xml
 			Assert.equal( "0.846", obj.toString() );
 			
 			
-			list = parsed.@x;
+			list = parsed['@x'];
 			Assert.isType( XMLList, list );
 			Assert.equal( list.length(), 1 );
 			obj = list[0];
 			Assert.isType( XML, obj );
 			Assert.equal( "your mom", obj.toString() );
-			
 			
 			try{
 				parsed = new XML(duplicatePropertyInput);
@@ -92,7 +91,6 @@ package xml
 			Assert.isType( XMLList, children );
 			Assert.equal( 2, children.length() );
 			
-			trace("alive");
 			return true;
 		}
 		
