@@ -70,7 +70,12 @@
     var codes = { };
 
     function load(sourceDir, vmContext) {
+        var metadataJSON = options['metadata-json'] || path.join(__dirname, '..', 'dist', 'spaceport.json');
+        var metadata = JSON.parse(fs.readFileSync(metadataJSON, 'utf8'));
+
         var nameTable = NameTable.create();
+        nameTable.add_metadata(metadata);
+
         var outputs = convert.project(sourceDir, nameTable, options);
         var scripts = { };
 
