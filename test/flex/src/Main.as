@@ -48,6 +48,7 @@ package {
 			SimpleCycle1,
 			SubClass1,
 			One, Two, Three, Four, Five,
+			RandomBugs,
 			JSONTests,
 			StaticSpUse,
 			XMLTests
