@@ -20,6 +20,8 @@ package {
 	
 	import interfaceTests.InterfaceTester;
 	
+	import sp.StaticSpUse;
+
 	import superTests.SuperTests;
 	
 	import tests.ImplicitThis;
@@ -47,6 +49,7 @@ package {
 			SubClass1,
 			One, Two, Three, Four, Five,
 			JSONTests,
+			StaticSpUse,
 			XMLTests
 		];
 		
