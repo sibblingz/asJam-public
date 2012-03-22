@@ -10,5 +10,15 @@ package {
 			var obj = new RandomBugs();
 			Assert.equal(42, obj.instance_staticConst);
 		}
+
+		/*
+		public var instance_referenced = 42;
+		public var instance_referencing = instance_referenced;
+		public static function test_instance_referencing():void {
+			var obj = new RandomBugs();
+			Assert.equal(42, obj.instance_referencing);
+			Assert.equal(42, obj.instance_referenced);
+		}
+		*/
 	}
 }
