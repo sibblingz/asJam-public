@@ -1,1 +1,1 @@
-set et
+set et tw=60
