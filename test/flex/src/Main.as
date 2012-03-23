@@ -6,6 +6,7 @@ package {
 	*/
 	import cycles.SimpleCycle1;
 	import cycles.inheritance.SubClass1;
+	import cycles.inheritance2.BaseClass;
 	import cycles.large.Five;
 	import cycles.large.Four;
 	import cycles.large.One;
@@ -47,6 +48,7 @@ package {
 			//CycleA, B, C,
 			SimpleCycle1,
 			SubClass1,
+			BaseClass,
 			One, Two, Three, Four, Five,
 			RandomBugs,
 			JSONTests,
