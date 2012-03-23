@@ -13,6 +13,8 @@ package {
 	import cycles.large.Three;
 	import cycles.large.Two;
 	
+	import imports.Importer;
+
 	import defaultParameters.DefaultParamTests;
 	
 	import fqn.ExternalReferences;
@@ -34,6 +36,7 @@ package {
 		}
 		
 		public static var testSuiteClasses = [
+			Importer,
 			MathTests,
 			DefaultArguments,
 			TypesTests,
