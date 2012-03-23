@@ -8,6 +8,7 @@
         "test": "make test"
     },
     "dependencies": {
+        "unrequire": "0.3.7",
         "optimist": "0.2.6"
     },
     "bin": {

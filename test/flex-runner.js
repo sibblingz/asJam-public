@@ -87,24 +87,25 @@
             scripts[outputPath] = vm.createScript(code, outputPath);
         });
 
-        vmContext.require.load = function (context, moduleName, url) {
-            url = url.replace(/^\.\//, '');
+        var unrequire = require('unrequire');
+        unrequire.reconfigure({
+            loadScriptSync: function (scriptName) {
+                scriptName = scriptName.replace(/^\.\//, '');
 
-            context.loaded[moduleName] = false;
-            ++context.scriptCount;
+                if (!scripts[scriptName]) {
+                    throw new Error("No such module: " + scriptName);
+                }
 
-            if (scripts[url]) {
-                scripts[url].runInNewContext(vmContext);
-                context.completeLoad(moduleName);
-            } else {
-                return vmContext.require.onError(new Error('No such module ' + url));
+                var script = scripts[scriptName];
+                script.runInNewContext(vmContext);
+                return true;
             }
-        };
-    }
+        });
 
-    function run(vmContext) {
+        vmContext.define = unrequire.define;
+
         try {
-            vmContext.require([ 'Main' ], function (Main) {
+            unrequire.require([ 'Main' ], function (Main) {
                 Main.run();
             });
         } catch (e) {
@@ -117,23 +118,33 @@
         }
     }
 
+    var sp = require(SPACEPORT_PATH);
+
     var vmContext = {
+        console: console,
+        setTimeout: setTimeout,
+        setInterval: setInterval,
+        process: process,
+
+        sp: sp,
+
         Array: Array,
         Date: Date,
         Number: Number,
         Object: Object,
         RegExp: RegExp,
         String: String,
+
+        // Include errors so instanceof works
+        // http://es5.github.com/#x15.1.4.9
+        Error: Error,
+        EvalError: EvalError,
+        RangeError: RangeError,
+        ReferenceError: ReferenceError,
+        SyntaxError: SyntaxError,
+        TypeError: TypeError,
+        URIError: URIError
     };
 
-    vm.runInNewContext(
-        fs.readFileSync(path.join(__dirname, 'require.js')),
-        vmContext,
-        'require.js'
-    );
-
-    vmContext.sp = require(SPACEPORT_PATH);
-
     load(path.join(__dirname, 'flex', 'src'), vmContext);
-    run(vmContext);
 }(require));
