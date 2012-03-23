@@ -103,18 +103,18 @@
     }
 
     function run(vmContext) {
-        vmContext.require([ 'Main' ], function (Main) {
-            try {
+        try {
+            vmContext.require([ 'Main' ], function (Main) {
                 Main.run();
-            } catch (e) {
-                Object.keys(codes).forEach(function (key) {
-                    console.log('===== ' + key);
-                    console.log(codes[key]);
-                });
+            });
+        } catch (e) {
+            Object.keys(codes).forEach(function (key) {
+                console.log('===== ' + key);
+                console.log(codes[key]);
+            });
 
-                throw e;
-            }
-        });
+            throw e;
+        }
     }
 
     var vmContext = {
