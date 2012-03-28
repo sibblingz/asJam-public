@@ -1,3 +1,5 @@
+// These are unsupported because in Flex SDK 4.6.x, JSON must be specified
+// using a fully-qualified name (which is unsupported).
 package {
 	import com.adobe.serialization.json.JSONDecoder;
 	import com.adobe.serialization.json.JSONEncoder;

@@ -17,9 +17,9 @@ package {
 
 	import defaultParameters.DefaultParamTests;
 	
-	import fqn.ExternalReferences;
-	import fqn.ExternalReferences2;
-	import fqn.SelfReferences;
+	//import fqn.ExternalReferences;
+	//import fqn.ExternalReferences2;
+	//import fqn.SelfReferences;
 	
 	import interfaceTests.InterfaceTester;
 	
@@ -44,9 +44,9 @@ package {
 			ImplicitThis,
 			DefaultParamTests,
 			InterfaceTester,
-			SelfReferences,
-			ExternalReferences,
-			ExternalReferences2,
+			//SelfReferences,
+			//ExternalReferences,
+			//ExternalReferences2,
 			StaticCallInCtor,
 			//CycleA, B, C,
 			SimpleCycle1,
@@ -54,7 +54,7 @@ package {
 			BaseClass,
 			One, Two, Three, Four, Five,
 			RandomBugs,
-			JSONTests,
+			//JSONTests,
 			StaticSpUse,
 			XMLTests
 		];
