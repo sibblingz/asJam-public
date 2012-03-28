@@ -4,6 +4,7 @@ var fs = require('fs');
 
 var parser = require('../lib/parse');
 var printer = require('../lib/print');
+var report = require('../lib/Reporter');
 
 var testDataDir = path.join(__dirname, '..', 'testData');
 
@@ -16,8 +17,10 @@ function testScript(testName, callback) {
 
     var actual;
 
+    var reporter = new report.ConsoleReporter();
+
     try {
-        actual = printer.gen_code(printer.rewrite(parser.parse(source)));
+        actual = printer.gen_code(printer.rewrite(parser.parse(source, null, null, reporter)));
     } catch (e) {
         callback(e || new Error('Unknown error'));
         return;
