@@ -60,7 +60,7 @@
     var printer = require('../lib/print');
     var convert = require('../lib/convert');
 
-    var NameTable = require('../lib/namespace').NameTable;
+    var NameTable = require('../lib/NameTable');
 
     var SPACEPORT_PATH = path.join(__dirname, '..', 'dist', 'spaceport-node.js');
     if (process.argv.length === 3) {
