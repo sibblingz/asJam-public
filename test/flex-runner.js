@@ -1,10 +1,8 @@
 (function (require) {
+    var report = require('../lib/Reporter');
+
     var options = {
-        read:           console.log.bind(console, 'Reading'),
-        parse:          console.log.bind(console, 'Parsing'),
-        parse_error:    console.error.bind(console, 'Parse error'),
-        build_exports:  console.log.bind(console, 'Building exports'),
-        rewrite:        console.log.bind(console, 'Rewriting'),
+        reporter: new report.ConsoleReporter()
     };
 
     // Node.JS is retarded and doesn't flush output streams when process.exit
