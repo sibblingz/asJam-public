@@ -4,7 +4,7 @@ var fs = require('fs');
 
 var parser = require('../lib/parse');
 var printer = require('../lib/print');
-var report = require('../lib/Reporter');
+var report = require('../lib/report');
 
 var testDataDir = path.join(__dirname, '..', 'testData');
 

@@ -1,5 +1,5 @@
 (function (require) {
-    var report = require('../lib/Reporter');
+    var report = require('../lib/report');
 
     var options = {
         reporter: new report.ConsoleReporter()
