@@ -40,7 +40,7 @@ package {
 			MathTests,
 			DefaultArguments,
 			TypesTests,
-			//SuperTests,
+			SuperTests,
 			ImplicitThis,
 			DefaultParamTests,
 			InterfaceTester,
