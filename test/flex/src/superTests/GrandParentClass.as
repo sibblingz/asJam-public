@@ -1,21 +1,19 @@
 ﻿package superTests
 {
+	public class GrandParentClass
+	{
+		public var gstring:String="G";
 
-public class GrandParentClass
-{
-	public var gstring:String="G";
-	public function GrandParentClass(pText:String):void {
-		gstring="GrandParentClass " + pText;
-	}
+		public function GrandParentClass(pText:String):void {
+			gstring = "GrandParentClass " + pText;
+		}
 
-	public function getGString():String {
-		return gstring;
-	}
-	
-	public function getGStringOverride():String {
-		return gstring+ " override";
-	}
-	
-}	// class GrandParentClass
+		public function getGString():String {
+			return gstring;
+		}
 
-}	// package
+		public function getGStringOverride():String {
+			return gstring + " override";
+		}
+	}
+}
