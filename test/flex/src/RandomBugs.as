@@ -1,7 +1,8 @@
 package {
 	public class RandomBugs {
 		public static var testNames:Array = [
-			"test_instance_staticConst"
+			"test_instance_staticConst",
+			"test_sp"
 		];
 
 		public static const staticConst = 42;
@@ -9,6 +10,11 @@ package {
 		public static function test_instance_staticConst():void {
 			var obj = new RandomBugs();
 			Assert.equal(42, obj.instance_staticConst);
+		}
+
+		public static function test_sp():void {
+			var sp:String = "42";
+			Assert.equal(42, int(sp));
 		}
 
 		/*
