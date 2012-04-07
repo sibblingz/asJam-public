@@ -13,18 +13,16 @@ package {
 	import cycles.large.Three;
 	import cycles.large.Two;
 	
-	import imports.Importer;
-
 	import defaultParameters.DefaultParamTests;
 	
-	//import fqn.ExternalReferences;
-	//import fqn.ExternalReferences2;
-	//import fqn.SelfReferences;
+	import imports.Importer;
 	
 	import interfaceTests.InterfaceTester;
 	
 	import sp.StaticSpUse;
-
+	
+	import static_references.OtherUnrelatedClass;
+	
 	import superTests.SuperTests;
 	
 	import tests.ImplicitThis;
@@ -56,7 +54,8 @@ package {
 			RandomBugs,
 			//JSONTests,
 			StaticSpUse,
-			XMLTests
+			XMLTests,
+			OtherUnrelatedClass
 		];
 		
 		public static function run():void {

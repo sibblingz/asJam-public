@@ -1,7 +1,5 @@
 package imports.sub {
-	import imports.sub.*;
-
-	class SubB {
+	public class SubB {
 		public static var message:String = 'world';
 
 		public function SubB() {
