@@ -25,4 +25,7 @@ if (argv._.length !== 1 && argv._.length !== 2) {
 var sourceDir = argv._[0];
 var destDir = argv._[1];
 
-require('../lib/asJam').convertProject(sourceDir, destDir, argv);
+var ok = require('../lib/asJam').convertProject(sourceDir, destDir, argv);
+if (!ok) {
+    process.exit(2);
+}
