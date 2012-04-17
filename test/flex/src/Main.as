@@ -21,8 +21,6 @@ package {
 	
 	import sp.StaticSpUse;
 	
-	import static_references.OtherUnrelatedClass;
-	
 	import superTests.SuperTests;
 	
 	import tests.ImplicitThis;
@@ -54,8 +52,7 @@ package {
 			RandomBugs,
 			//JSONTests,
 			StaticSpUse,
-			XMLTests,
-			OtherUnrelatedClass
+			XMLTests
 		];
 		
 		public static function run():void {
